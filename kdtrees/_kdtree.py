@@ -180,7 +180,7 @@ class KDTree:
 		Returns
 		-------
 		neighbors : list or None, default=None
-			The list of `n` nearest neighbors.
+			The list of `n` nearest neighbors, sorted based on proximity.
 
 		distances : list or None, default=None
 			The list of distances corresponding to `neighbors`.
@@ -226,7 +226,7 @@ class KDTree:
 		Returns
 		-------
 		neighbors : list or None, default=None
-			The list of `n` nearest neighbors.
+			The list of `n` nearest neighbors, sorted based on proximity.
 
 		distances : list or None, default=None
 			The list of distances corresponding to `neighbors`.
