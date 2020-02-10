@@ -87,7 +87,7 @@ class KDTree:
 		tree : KDTree
 			The root of the KDTree built from `points`
 		"""
-		points = utils.format_array(points, list=True)
+		points = utils.format_array(points, l=True)
 		tree = KDTree(points[0], k=k, axis=init_axis)
 		for p in points[1:]:
 			tree.insert(p)

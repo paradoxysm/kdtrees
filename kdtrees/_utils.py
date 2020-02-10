@@ -5,28 +5,52 @@
 # Authors: Jeffrey Wang
 # License: BSD 3 clause
 
-def format_array(arr, list=False):
+import numpy as np
+
+def _is_builtin(obj):
 	"""
-	Format all arrays given into numpy ndarrays
+	Check if the type of `obj` is a builtin type.
+
+	Parameters
+	----------
+	obj : object
+		Object in question.
+
+	Returns
+	-------
+	builtin : bool
+		True if `obj` is a builtin type
+	"""
+	return obj.__class__.__module__ == '__builtin__'
+
+def format_array(arr, l=False):
+	"""
+	Format the given array or scalar into a numpy ndarray
 	such that the last axis denotes the features.
 	If the argument given is a scalar, wrap into a list first.
 
 	Parameters
 	----------
-	arr : array-like
-		array-like object to convert into ndarray.
+	arr : array-like or scalar
+		Array-like object or scalar to convert into ndarray.
+
+	l : bool
+		`l` should be set to True if `arr` is a list of items.
 
 	Returns
 	-------
 	ndarr : ndarray
-		Formatted ndarrays where the last axis denotes the features.
+		Formatted ndarray where the last axis denotes the features.
 	"""
+	if not isinstance(arr, (list, tuple, np.ndarray, np.generic)) and \
+			not _is_builtin(arr):
+		raise ValueError("Must be an array-like or scalar built from standard types")
 	if np.isscalar(arr):
 		return np.asarray([arr])
 	np_arr = np.asarray(arr)
 	if list:
-		if np_arr.ndim != np_arr.shape[-1]:
-			return np_arr[:, np.new_axis]
+		if np_arr.shape != () and np_arr.ndim != np_arr.shape[-1]:
+			return np_arr[:, np.newaxis]
 		else:
 			return np_arr
 	else:
