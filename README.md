@@ -1,6 +1,11 @@
 # kdtrees
 **Python implementation of a K-D Tree as a pseudo-balanced Tree**
 
+[![Build Status](https://travis-ci.com/paradoxysm/kdtrees.svg?branch=master)](https://travis-ci.com/paradoxysm/kdtrees)
+[![codecov](https://codecov.io/gh/paradoxysm/kdtrees/branch/master/graph/badge.svg)](https://codecov.io/gh/paradoxysm/kdtrees)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
+![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
+
 ## Overview
 
 K-Dimensional Tree is a space-partitioning data structure, efficiently organizing points in k-dimensional space.
@@ -15,19 +20,19 @@ More details regarding this implementation can be found [here](doc)
 
 kdtrees requires:
 - numpy >= 1.18.0
- 
+
 kdtrees is tested and supported on Python 3.5 and Python 3.6. Usage on other versions of Python is not guaranteed to work as intended.
- 
+
 ### User Installation
- 
+
 kdtrees can be easily installed using ```pip```
- 
+
 ```
 pip install kdtrees
 ```
- 
+
 ## Changelog
- 
+
 See the [changelog](CHANGES.md) for a history of notable changes to kdtrees.
 
 ## Development
