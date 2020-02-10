@@ -10,7 +10,7 @@
 
 ### Version 0.1.0
 
-- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees```](kdtrees) is now implemented. We're live!
+- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees```](.) is now implemented. We're live!
 - ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) can now be modified by insertion and deletion.
 - ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) now maintains itself as a pseudo-balanced tree.
 - ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._utils```](kdtrees/_utils.py) now implements ```format_array``` and ```check_dimensionality```.
