@@ -23,6 +23,7 @@ def _is_builtin(obj):
 	"""
 	return obj.__class__.__module__ == 'builtins'
 
+
 def format_array(arr, l=False):
 	"""
 	Format the given array or scalar into a numpy ndarray
@@ -48,13 +49,17 @@ def format_array(arr, l=False):
 	if np.isscalar(arr):
 		return np.asarray([arr])
 	np_arr = np.asarray(arr)
-	if list:
-		if np_arr.shape != () and np_arr.ndim != np_arr.shape[-1]:
+	if l:
+		if np_arr.shape != () and (np_arr.ndim != np_arr.shape[-1] or \
+				(np_arr.shape[0] == 1 and np_arr.ndim <= 1)):
 			return np_arr[:, np.newaxis]
-		else:
-			return np_arr
+		return np_arr
 	else:
-		return np.squeeze(np_arr)
+		if np_arr.shape != () and np_arr.size != 1:
+			return np.squeeze(np_arr)
+		np_arr = np.squeeze(np_arr)
+		np_arr.shape = (1,)
+		return np_arr
 
 
 def check_dimensionality(*args):
