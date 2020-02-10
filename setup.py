@@ -38,5 +38,5 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities',
     ],
-	keywords='kdtree'
-    zip_safe=False)
+	keywords='kdtree',
+    zip_safe=True)
