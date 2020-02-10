@@ -21,7 +21,7 @@ def _is_builtin(obj):
 	builtin : bool
 		True if `obj` is a builtin type
 	"""
-	return obj.__class__.__module__ == '__builtin__'
+	return obj.__class__.__module__ == 'builtins'
 
 def format_array(arr, l=False):
 	"""
@@ -42,7 +42,7 @@ def format_array(arr, l=False):
 	ndarr : ndarray
 		Formatted ndarray where the last axis denotes the features.
 	"""
-	if not isinstance(arr, (list, tuple, np.ndarray, np.generic)) and \
+	if not isinstance(arr, (np.ndarray, np.generic)) and \
 			not _is_builtin(arr):
 		raise ValueError("Must be an array-like or scalar built from standard types")
 	if np.isscalar(arr):
