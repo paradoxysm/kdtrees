@@ -36,7 +36,7 @@ def format_array(arr, l=False):
 		Array-like object or scalar to convert into ndarray.
 
 	l : bool
-		`l` should be set to True if `arr` is a list of items.
+		`l` should be set to True if `arr` is semantically a list of items.
 
 	Returns
 	-------
@@ -62,7 +62,7 @@ def format_array(arr, l=False):
 		return np_arr
 
 
-def check_dimensionality(*args):
+def check_dimensionality(*args, l=False):
 	"""
 	Check that all arguments have the same dimensionality.
 	Return that dimensionality.
@@ -70,7 +70,11 @@ def check_dimensionality(*args):
 	Parameters
 	----------
 	*args : tuple, default=()
-		Tuple of ndarrays where the last axis denotes the features.
+		Tuple of array-like objects where the last axis denotes the features.
+
+	l : bool
+		`l` should be set to True if `args` is a tuple where every
+		item is semantically a list of items.
 
 	Returns
 	-------
@@ -81,8 +85,9 @@ def check_dimensionality(*args):
 		raise ValueError("Must contain at least one argument")
 	if np.any(args == None):
 		raise ValueError("Must contain non-None arguments")
-	if np.any(not isinstance(args, np.ndarray)):
-		raise ValueError("Must contain ndarray arguments")
+	np_args = []
+	for a in args;
+		np_args.append(format_array(a),l=l)
 	dim = None
 	for arg in args:
 		if dim is None:
