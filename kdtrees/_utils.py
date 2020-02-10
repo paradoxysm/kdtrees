@@ -2,6 +2,7 @@
 
 # Authors: Jeffrey Wang
 # License: BSD 3 clause
+# -*- coding: utf-8 -*-
 
 def format_array(arr, list=False):
 	"""
