@@ -41,7 +41,7 @@ class KDTree:
 	nodes : int
 		Number of nodes in the KDTree, including itself.
 	"""
-	def __init__(self, value, k=1, axis=0):
+	def __init__(self, value, k=1, axis=0, accept=None):
 		self.value = value
 		self.k = k
 		self.axis = axis
@@ -49,6 +49,7 @@ class KDTree:
 		self.right = None
 		self.height = 1
 		self.nodes = 1
+		self.accept = accept
 
 	def visualize(self, depth=0):
 		"""
@@ -59,7 +60,7 @@ class KDTree:
 		depth : int, default=0
 			Depth of the KDTree node. A depth of 0 implies the root.
 		"""
-		print('\t' * depth + str(self.value) + ", axis: " + str(self.axis))
+		print('\t' * depth + str(self.value) + ", axis: " + str(self.axis) + ", height: " + str(self.height) + ", nodes: " + str(self.nodes))
 		if self.right:
 			self.right.visualize(depth=depth+1)
 		else:
@@ -70,7 +71,7 @@ class KDTree:
 			print('\t' * (depth+1) + "None")
 
 	@staticmethod
-	def initialize(points, k=1, init_axis=0):
+	def initialize(points, k=None, init_axis=0, accept=None):
 		"""
 		Initialize a KDTree from a list of points.
 
@@ -87,7 +88,9 @@ class KDTree:
 		tree : KDTree
 			The root of the KDTree built from `points`
 		"""
-		points = utils.format_array(points, l=True)
+		points = utils.format_array(points, l=True, accept=accept)
+		if k is None:
+			k = utils.check_dimensionality(points, l=True, accept=self.accept)
 		tree = KDTree(points[0], k=k, axis=init_axis)
 		for p in points[1:]:
 			tree.insert(p)
@@ -102,18 +105,18 @@ class KDTree:
 		point : array-like or scalar
 			The point to be inserted, where the last axis denotes the features.
 		"""
-		point = utils.format_array(point)
-		if self.k != utils.check_dimensionality(point):
+		point = utils.format_array(point, accept=self.accept)
+		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
-		axis = self.axis + 1 if self.axis < self.k else 0
+		axis = self.axis + 1 if self.axis + 1 < self.k else 0
 		if point[self.axis] >= self.value[self.axis]:
 			if self.right is None:
-				self.right = KDTree(value=point, k=self.k, axis=axis)
+				self.right = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
 				self.right.insert(point)
 		else:
 			if self.left is None:
-				self.left = KDTree(value=point, k=self.k, axis=axis)
+				self.left = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
 				self.left.insert(point)
 		heights = []
@@ -141,8 +144,8 @@ class KDTree:
 			The KDTree node whose value matches the point.
 			None if the point was not found in the tree.
 		"""
-		point = utils.format_array(point)
-		if self.k != utils.check_dimensionality(point):
+		point = utils.format_array(point, accept=self.accept)
+		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		elif self.value == point:
 			return self
@@ -172,14 +175,14 @@ class KDTree:
 		tree : KDTree
 			The root of the KDTree with `point` removed.
 		"""
-		point = utils.format_array(point)
-		if self.k != utils.checkDimensionality(point):
+		point = utils.format_array(point, accept=self.accept)
+		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDCoreTree")
 		if self.value == point:
 			values = self.collect()
 			if len(values) > 1:
 				values.remove(point)
-				new_tree = KDTree.initialize(values, k=self.k, init_axis=self.axis)
+				new_tree = KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
 				return new_tree
 			return None
 		elif point[self.axis] > self.value[self.axis]:
@@ -227,12 +230,15 @@ class KDTree:
 	def balance(self):
 		"""
 		Balance the KDTree if the secondary invariant is not satisfied.
+
+		Returns
+		-------
+		tree : KDTree
+			The root of the newly pseudo-balanced KDTree
 		"""
 		if not self.invariant():
-			right_values = self.right.collect()
-			left_values = self.left.collect()
-			self.right = initialize(right_values, k=self.right.k, init_axis=self.right.axis)
-			self.left = initialize(left_values, k=self.left.k, init_axis=self.left.axis)
+			values = self.collect()
+			return KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
 
 	def invariant(self):
 		"""
@@ -243,7 +249,12 @@ class KDTree:
 		valid : bool
 			True if the KDTree satisfies the secondary invariant.
 		"""
-		return np.abs(self.left.nodes - self.right.nodes) <= self.k
+		ln, rn = 0, 0
+		if self.left:
+			ln = self.left.nodes
+		if self.right:
+			rn = self.right.nodes
+		return np.abs(ln - rn) <= self.k
 
 	def nearest_neighbor(self, point, n=1, neighbors=[]):
 		"""
@@ -267,8 +278,8 @@ class KDTree:
 		neighbors : list, shape (n_neighbors, 2)
 			The list of `n` tuples, referring to `n` nearest neighbors.
 		"""
-		point = utils.format_array(point)
-		if self.k != utils.check_dimensionality(point):
+		point = utils.format_array(point, accept=self.accept)
+		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		if len(neighbors) != n:
 			neighbors = [(None, np.inf)] * n
@@ -308,8 +319,8 @@ class KDTree:
 			The list of `n` tuples, referring to proximal neighbors within
 			`d` distance from `point`.
 		"""
-		point = utils.format_array(point)
-		if self.k != utils.check_dimensionality(point):
+		point = utils.format_array(point, accept=self.accept)
+		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		if d == 0:
 			exists = self.search(point)

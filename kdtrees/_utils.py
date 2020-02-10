@@ -24,7 +24,7 @@ def _is_builtin(obj):
 	return obj.__class__.__module__ == 'builtins'
 
 
-def format_array(arr, l=False):
+def format_array(arr, l=False, accept=None):
 	"""
 	Format the given array or scalar into a numpy ndarray
 	such that the last axis denotes the features.
@@ -43,7 +43,10 @@ def format_array(arr, l=False):
 	ndarr : ndarray
 		Formatted ndarray where the last axis denotes the features.
 	"""
-	if not isinstance(arr, (np.ndarray, np.generic)) and \
+	accept_types = (np.ndarray, np.generic)
+	if accept:
+		accept_types += accept
+	if not isinstance(arr, accept_types) and \
 			not _is_builtin(arr):
 		raise ValueError("Must be an array-like or scalar built from standard types")
 	if np.isscalar(arr):
@@ -62,7 +65,7 @@ def format_array(arr, l=False):
 		return np_arr
 
 
-def check_dimensionality(*args, l=False):
+def check_dimensionality(*args, l=False, accept=None):
 	"""
 	Check that all arguments have the same dimensionality.
 	Return that dimensionality.
@@ -85,7 +88,7 @@ def check_dimensionality(*args, l=False):
 		raise ValueError("Must contain at least one argument")
 	np_args = []
 	for a in args:
-		np_args.append(format_array(a, l=l))
+		np_args.append(format_array(a, l=l, accept=accept))
 	dim = None
 	for arg in np_args:
 		if dim is None:
