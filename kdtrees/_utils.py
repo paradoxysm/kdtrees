@@ -83,13 +83,11 @@ def check_dimensionality(*args, l=False):
 	"""
 	if len(args) == 0:
 		raise ValueError("Must contain at least one argument")
-	if np.any(args == None):
-		raise ValueError("Must contain non-None arguments")
 	np_args = []
-	for a in args;
-		np_args.append(format_array(a),l=l)
+	for a in args:
+		np_args.append(format_array(a, l=l))
 	dim = None
-	for arg in args:
+	for arg in np_args:
 		if dim is None:
 			dim = arg.shape[-1]
 		elif dim != arg.shape[-1]:
