@@ -55,7 +55,7 @@ def format_array(arr, l=False, accept=None):
 	if l:
 		if np_arr.shape != () and np_arr.ndim <= 1:
 			return np_arr[:, np.newaxis]
-		elif len(np_arr) <= 1:
+		elif len(np_arr) <= 1 or np_arr.shape[-1] == 1:
 			return np_arr
 		return np.squeeze(np_arr)
 	else:

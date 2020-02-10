@@ -18,6 +18,7 @@ def test_is_builtin(obj, builtin_exp):
 	(0, False, np.asarray([0])),
 	(0, True, np.asarray([0])),
 	([0], False, np.asarray([0])),
+	([[0],[1]], True, np.asarray([[0],[1]])),
 	([[0]], False, np.asarray([0])),
 	([0], True, np.asarray([[0]])),
 	([0,1], False, np.asarray([0,1])),
@@ -48,6 +49,7 @@ def test_format_array_override_type():
 @pytest.mark.parametrize("args,dim_l,dim_exp", [
 	([0,1], False, 1),
 	([0], False, 1),
+	([0,1,2], True, 1),
 	([[0]], False, 1),
 	([[0]], True, 1),
 	([[0,1]], False, 2),
