@@ -7,7 +7,7 @@ K-Dimensional Tree is a space-partitioning data structure, efficiently organizin
 
 This K-D Tree implementation allows for construction, modification and searching of a K-D Tree. It also maintains the tree in a pseudo-balanced manner through a secondary invariant where every node is the median ± dimensionality of subsidiary nodes along a specific axis.
 
-More details regarding this implementation can be found [here](docs)
+More details regarding this implementation can be found [here](doc)
 
 ## Installation
 
@@ -38,7 +38,7 @@ kdtrees is fully implemented for basic functionality. However, it may not have e
 
 ### Documentation
 
-Documentation for kdtrees can be found [here](docs)
+Documentation for kdtrees can be found [here](doc)
 
 ### Issues and Questions
 
