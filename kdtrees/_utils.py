@@ -28,7 +28,7 @@ def format_array(arr, list=False):
 		else:
 			return np_arr
 	else:
-		return np_arr = np.squeeze(np_arr)
+		return np.squeeze(np_arr)
 
 
 def check_dimensionality(*args):
