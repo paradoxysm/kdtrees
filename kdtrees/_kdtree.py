@@ -8,6 +8,7 @@
 import numpy as np
 
 from . import _utils as utils
+from .kdtree_type import KDTreeType
 
 class KDTree:
 	"""
@@ -73,28 +74,106 @@ class KDTree:
 	@staticmethod
 	def initialize(points, k=None, init_axis=0, accept=None):
 		"""
-		Initialize a KDTree from a list of points.
+		Initialize a KDTree from a list of points by presorting `points`
+		by each of the axes of discrimination. Initialization attempts
+		balancing by selecting the median along each axis of discrimination
+		as the root.
 
 		Parameters
 		----------
 		points : array-like, shape (n_points, *)
 			List of points to build a KDTree where the last axis denotes the features
 
+		k : int or None, default=None
+			Dimensionality of the points. If None, `initialize` will self-detect.
+
 		init_axis : int, default=0
 			Initial axis to generate the KDTree.
+
+		accept : KDTreeType or None
+			Override and allow custom types to be accepted.
 
 		Returns
 		-------
 		tree : KDTree
 			The root of the KDTree built from `points`
 		"""
+		if accept is not None and not isinstance(accept, KDTreeType):
+			raise ValueError("Accept must be a subclass of KDTreeType")
 		points = utils.format_array(points, l=True, accept=accept)
 		if k is None:
-			k = utils.check_dimensionality(points, l=True, accept=self.accept)
-		tree = KDTree(points[0], k=k, axis=init_axis)
-		for p in points[1:]:
-			tree.insert(p)
+			k = utils.check_dimensionality(points, l=True, accept=accept)
+		sorted_points = []
+		for axis in range(k):
+			sorted_points.append(sorted(points, key=lambda x: x[axis]))
+		sorted_points = np.asarray(sorted_points)
+		return KDTree._initialize_recursive(sorted_points, k, init_axis, accept)
+
+	@staticmethod
+	def _initialize_recursive(sorted_points, k, axis, accept):
+		"""
+		Internal recursive initialization based on an array of points
+		presorted in all axes.
+
+		This function should not be called externally. Use `initialize`
+		instead.
+
+		Parameters
+		----------
+		sorted_points : list
+			List of lists of points, each sorted on
+			each of the axes of discrimination.
+
+		k : int
+			Dimensionality of the points.
+
+		axis : int
+			Axis of discrimination.
+
+		accept : KDTreeType or None
+			Override and allow custom types to be accepted.
+
+		Returns
+		-------
+		tree : KDTree
+			The root of the KDTree built from `points`
+		"""
+		median = len(sorted_points[axis]) // 2
+		tree = KDTree(sorted_points[axis][median], k=k, axis=axis, accept=accept)
+		right_points = sorted_points[axis][median+1:]
+		left_points = sorted_points[axis][:median]
+		sorted_right_points = []
+		sorted_left_points = []
+		for points in sorted_points:
+			sorted_right_points.append(points[np.where(np.all(np.isin(points, right_points), axis=-1))])
+			sorted_left_points.append(points[np.where(np.all(np.isin(points, left_points), axis=-1))])
+		sorted_right_points = np.asarray(sorted_right_points)
+		sorted_left_points = np.asarray(sorted_left_points)
+		axis = axis + 1 if axis + 1 < k else 0
+		if len(sorted_points[axis][median+1:]) > 0:
+			tree.right = KDTree._initialize_recursive(sorted_right_points, k, axis, accept)
+		if len(sorted_points[axis][:median]) > 0:
+			tree.left = KDTree._initialize_recursive(sorted_left_points, k, axis, accept)
+		tree._recalculate_height_nodes()
 		return tree
+
+	def _recalculate_height_nodes(self):
+		"""
+		Recalculate the height and nodes of the KDTree,
+		assuming that the KDTree's children are correctly
+		calculated.
+		"""
+		heights = []
+		nodes = 0
+		if self.right:
+			heights.append(self.right.height)
+			nodes += self.right.nodes
+		if self.left:
+			heights.append(self.left.height)
+			nodes += self.left.nodes
+		if len(heights) > 0:
+			self.height = np.max(heights) + 1
+		self.nodes = nodes + 1
 
 	def insert(self, point):
 		"""
@@ -104,29 +183,28 @@ class KDTree:
 		----------
 		point : array-like or scalar
 			The point to be inserted, where the last axis denotes the features.
+
+		Returns
+		-------
+		tree : KDTree
+			The root of the KDTree with `point` inserted.
 		"""
 		point = utils.format_array(point, accept=self.accept)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		axis = self.axis + 1 if self.axis + 1 < self.k else 0
-		if point[self.axis] >= self.value[self.axis]:
+		if point[self.axis] > self.value[self.axis]:
 			if self.right is None:
 				self.right = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
 				self.right.insert(point)
-		else:
+		elif point[self.axis] < self.value[self.axis]:
 			if self.left is None:
 				self.left = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
 				self.left.insert(point)
-		heights = []
-		if self.right:
-			heights.append(self.right.height)
-		if self.left:
-			heights.append(self.left.height)
-		self.height = np.max(heights) + 1
-		self.nodes += 1
-		self.balance()
+		self._recalculate_height_nodes()
+		return self.balance()
 
 	def search(self, point):
 		"""
@@ -238,7 +316,8 @@ class KDTree:
 		"""
 		if not self.invariant():
 			values = self.collect()
-			return KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
+			KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
+		return self
 
 	def invariant(self):
 		"""
