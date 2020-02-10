@@ -2,6 +2,7 @@ import pytest
 import numpy as np
 
 from kdtrees import _utils as utils
+from kdtrees import KDTreeType
 
 @pytest.mark.parametrize("obj,builtin_exp", [
 	(0, True),
@@ -24,7 +25,8 @@ def test_is_builtin(obj, builtin_exp):
 	([[0,1]], False, np.asarray([0,1])),
 	([[0,1]], True, np.asarray([[0,1]])),
 	([[0,1],[2,3]], True, np.asarray([[0,1],[2,3]])),
-	(np.asarray([0,1]), True, np.asarray([[0],[1]]))
+	(np.asarray([0,1]), True, np.asarray([[0],[1]])),
+	([[0,1,2],[2,3,4]], True, np.asarray([[0,1,2],[2,3,4]])),
 ])
 
 def test_format_array(arr, format_l, format_exp):
@@ -37,6 +39,12 @@ def test_format_array_wrong_type():
 				self.bad = True
 		assert utils.format_array(BadType())
 
+def test_format_array_override_type():
+	class OKType(KDTreeType):
+		def __init__(self):
+			self.ok = True
+	assert utils.format_array(OKType(), accept=OKType) == np.asarray([OKType()])
+
 @pytest.mark.parametrize("args,dim_l,dim_exp", [
 	([0,1], False, 1),
 	([0], False, 1),
@@ -47,7 +55,8 @@ def test_format_array_wrong_type():
 	([[[0,1]]], False, 2),
 	([[[0,1]]], True, 2),
 	([[[0,1],[2,3]]], True, 2),
-	(np.asarray([0,1]), True, 1)
+	(np.asarray([0,1]), True, 1),
+	(utils.format_array([0,1], l=True), True, 1)
 ])
 
 def test_check_dimensionality(args, dim_l, dim_exp):

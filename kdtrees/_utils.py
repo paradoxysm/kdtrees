@@ -43,20 +43,21 @@ def format_array(arr, l=False, accept=None):
 	ndarr : ndarray
 		Formatted ndarray where the last axis denotes the features.
 	"""
-	accept_types = (np.ndarray, np.generic)
+	accept_types = [np.ndarray, np.generic]
 	if accept:
-		accept_types += accept
-	if not isinstance(arr, accept_types) and \
+		accept_types.append(accept)
+	if not isinstance(arr, tuple(accept_types)) and \
 			not _is_builtin(arr):
 		raise ValueError("Must be an array-like or scalar built from standard types")
 	if np.isscalar(arr):
 		return np.asarray([arr])
 	np_arr = np.asarray(arr)
 	if l:
-		if np_arr.shape != () and (np_arr.ndim != np_arr.shape[-1] or \
-				(np_arr.shape[0] == 1 and np_arr.ndim <= 1)):
+		if np_arr.shape != () and np_arr.ndim <= 1:
 			return np_arr[:, np.newaxis]
-		return np_arr
+		elif len(np_arr) <= 1:
+			return np_arr
+		return np.squeeze(np_arr)
 	else:
 		if np_arr.shape != () and np_arr.size != 1:
 			return np.squeeze(np_arr)
