@@ -11,7 +11,7 @@ def read(*paths):
 setup(
 	name='kdtrees',
 	version='0.1.0',
-    description='Python implementation of a K-D Tree as an AVL Tree',
+    description='Python implementation of a K-D Tree as a pseudo-balanced Tree',
     long_description=(read('README.md') + '\n\n'),
 	url='http://github.com/paradoxysm/kdtrees',
     author='paradoxysm',
@@ -20,7 +20,7 @@ setup(
     install_requires=[
 		'numpy'
     ],
-	python_requires='>=2.7, >=3.4, <4',
+	python_requires='>=3.4, <4',
 	classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -28,11 +28,10 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
+		'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities',
     ],
