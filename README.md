@@ -20,7 +20,7 @@ More details regarding this implementation can be found [here](https://github.co
 ### Dependencies
 
 kdtrees requires:
-- numpy >= 1.18.0
+- numpy
 
 kdtrees is tested and supported on Python 3.4+ up to Python 3.7. Usage on other versions of Python is not guaranteed to work as intended.
 
