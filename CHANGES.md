@@ -8,7 +8,7 @@
 - ![Fix](https://img.shields.io/badge/-Fix-red) : Something that previously didn’t work as documentated or as expected should now work.
 - ![Documentation](https://img.shields.io/badge/-Documentation-orange) : An update to the documentation.
 
-### Version 0.1.0
+### Version 0.1.5
 
 - ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees```](https://github.com/paradoxysm/kdtrees/) is now implemented. We're live!
 - ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) can now be modified by insertion and deletion.
