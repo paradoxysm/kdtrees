@@ -4,16 +4,19 @@
 [![Build Status](https://travis-ci.com/paradoxysm/kdtrees.svg?branch=master)](https://travis-ci.com/paradoxysm/kdtrees)
 [![codecov](https://codecov.io/gh/paradoxysm/kdtrees/branch/master/graph/badge.svg)](https://codecov.io/gh/paradoxysm/kdtrees)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
-![PyPI](https://img.shields.io/pypi/v/kdtrees)
+[![PyPI](https://img.shields.io/pypi/v/kdtrees)](https://pypi.org/project/kdtrees/)
 ![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/34ab5f0112f08e766e09/maintainability)](https://codeclimate.com/github/paradoxysm/kdtrees/maintainability)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees?)
 
 ## Overview
 
-K-Dimensional Tree is a space-partitioning data structure, efficiently organizing points in k-dimensional space.
+A K-Dimensional Tree, or K-D Tree, is a space-partitioning data structure which efficiently organizing points in k-dimensional space.
 
-This K-D Tree implementation allows for construction, modification and searching of a K-D Tree. It also maintains the tree in a pseudo-balanced manner through a secondary invariant where every node is the median ± dimensionality of subsidiary nodes along a specific axis.
+kdtrees implementation of a K-D Tree allows for construction, modification, searching, and other helpful functions such as k-nearest neighbors. It also maintains the tree in a pseudo-balanced manner through a secondary invariant where every node is the median ± dimensionality of subsidiary nodes along a specific axis.
 
-More details regarding this implementation can be found [here](https://github.com/paradoxysm/kdtrees/tree/master/doc)
+More details regarding this implementation can be found in the documentation [here](https://github.com/paradoxysm/kdtrees/tree/master/doc)
 
 ## Installation
 

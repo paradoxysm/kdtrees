@@ -10,7 +10,7 @@ such that the last axis denotes the features.
 If the argument given is a scalar, wrap into a list first.
 
 **Parameters**
-```python
+```
 arr : array-like or scalar
  Array-like object or scalar to convert into ndarray.
 
@@ -19,7 +19,7 @@ l : bool
 ```
 
 **Returns**
-```python
+```
 ndarr : ndarray
  Formatted ndarray where the last axis denotes the features.
 ```
@@ -33,7 +33,7 @@ Check that all arguments have the same dimensionality.
 Return that dimensionality.
 
 **Parameters**
-```python
+```
 *args : tuple, default=()
  Tuple of array-like objects where the last axis denotes the features.
 
@@ -43,7 +43,7 @@ l : bool
 ```
 
 **Returns**
-```python
+```
 dim : int
  The dimensionality of all given arguments.
 ```
