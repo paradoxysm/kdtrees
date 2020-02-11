@@ -12,7 +12,7 @@
 
 ## Overview
 
-A K-Dimensional Tree, or K-D Tree, is a space-partitioning data structure which efficiently organizing points in k-dimensional space.
+A K-Dimensional Tree, or K-D Tree, is a space-partitioning data structure which efficiently organizing points in k-dimensional space. For further details regarding K-D Trees, please see a detailed description on [Wikipedia](https://en.wikipedia.org/wiki/K-d_tree).
 
 kdtrees implementation of a K-D Tree allows for construction, modification, searching, and other helpful functions such as k-nearest neighbors. It also maintains the tree in a pseudo-balanced manner through a secondary invariant where every node is the median ± dimensionality of subsidiary nodes along a specific axis.
 
