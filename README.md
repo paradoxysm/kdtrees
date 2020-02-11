@@ -6,6 +6,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
 [![PyPI](https://img.shields.io/pypi/v/kdtrees)](https://pypi.org/project/kdtrees/)
 ![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees?)
 
 ## Overview
 
