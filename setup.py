@@ -14,6 +14,7 @@ setup(
     description='Python implementation of a K-D Tree as a pseudo-balanced Tree',
     long_description=(read('README.md') + '\n\n'),
 	url='http://github.com/paradoxysm/kdtrees',
+	download_url = 'https://github.com/paradoxysm/kdtrees/archive/v0.1.0.tar.gz',
     author='paradoxysm',
     license='BSD-3-Clause',
     packages=find_packages(),
