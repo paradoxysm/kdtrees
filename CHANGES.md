@@ -10,11 +10,12 @@
 
 ### Version 0.1.0
 
-- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees```](.) is now implemented. We're live!
-- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) can now be modified by insertion and deletion.
-- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) now maintains itself as a pseudo-balanced tree.
-- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._utils```](kdtrees/_utils.py) now implements ```format_array``` and ```check_dimensionality```.
-- ![Enhancement](https://img.shields.io/badge/-Enhancement-yellow) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) now supports k-nearest neighbors through ```nearest_neighbor```.
-- ![Enhancement](https://img.shields.io/badge/-Enhancement-yellow) : [```kdtrees._kdtree```](kdtrees/_kdtree.py) now supports finding neighbors within a specified distance through ```proximal_neighbor```.
-- ![Documentation](https://img.shields.io/badge/-Documentation-orange) : Updates made to the [README](README.md) and the [CHANGELOG](CHANGES.md).
-- ![Documentation](https://img.shields.io/badge/-Documentation-orange) : [Documentation](doc) initialized.
+- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees```](https://github.com/paradoxysm/kdtrees/) is now implemented. We're live!
+- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) can now be modified by insertion and deletion.
+- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) now maintains itself as a pseudo-balanced tree.
+- ![Feature](https://img.shields.io/badge/-Feature-brightgreen) : [```kdtrees._utils```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_utils.py) now implements ```format_array``` and ```check_dimensionality```.
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-yellow) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) now supports k-nearest neighbors through ```nearest_neighbor```.
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-yellow) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) now supports finding neighbors within a specified distance through ```proximal_neighbor```.
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-yellow) : [```kdtrees._kdtree```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/_kdtree.py) now supports custom types through the use of an `accept` clause. See [```kdtrees.kdtree_type```](https://github.com/paradoxysm/kdtrees/tree/master/kdtrees/kdtree_type.py) for implementation of required abstract base superclass.
+- ![Documentation](https://img.shields.io/badge/-Documentation-orange) : Updates made to the [README](https://github.com/paradoxysm/kdtrees/tree/master/README.md) and the [CHANGELOG](https://github.com/paradoxysm/kdtrees/tree/master/CHANGES.md).
+- ![Documentation](https://img.shields.io/badge/-Documentation-orange) : [Documentation](https://github.com/paradoxysm/kdtrees/tree/master/doc) initialized and [pydoc](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc) created.
