@@ -26,7 +26,9 @@ class KDTreeType(ABC, list):
 		other : object
 			The object in question.
 
-		Returns : bool
+		Returns
+		-------
+		eq : bool
 			True if `other` is equivalent to this `KDTreeType`
 		"""
 		if isinstance(other, self.__class__):
@@ -43,7 +45,9 @@ class KDTreeType(ABC, list):
 		other : object
 			The object in question.
 
-		Returns : bool
+		Returns
+		-------
+		ne : bool
 			True if `other` is not equivalent to this `KDTreeType`
 		"""
 		return not self.__eq__(other)
@@ -54,7 +58,9 @@ class KDTreeType(ABC, list):
 		Return the 'length' of the KDTreeType. This needs to be
 		defined based on the custom implementation.
 
-		Returns : int
+		Returns
+		-------
+		length : int
 			The 'length' of this `KDTreeType`.
 		"""
 		raise NotImplementedError("__len__ not implemented")
@@ -65,7 +71,9 @@ class KDTreeType(ABC, list):
 		Return the 'item' and the 'index', `key`, of the KDTreeType.
 		This needs to be defined based on the custom implementation.
 
-		Returns : object
+		Returns
+		-------
+		item : object
 			The 'item' and the 'index', `key`, of the KDTreeType.
 		"""
 		raise NotImplementedError("__getitem__ not implemented")
@@ -76,7 +84,9 @@ class KDTreeType(ABC, list):
 		Return the next 'item' of the KDTreeType.
 		This needs to be defined based on the custom implementation.
 
-		Yields : object
+		Yields
+		------
+		item : object
 			The next 'item' of the KDTreeType.
 		"""
 		raise NotImplementedError("__iter__ not implemented")
