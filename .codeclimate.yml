@@ -22,5 +22,9 @@ checks:
     config:
       threshold: 4
   return-statements:
+    enabled: false
+  similar-code:
+    enabled: false
+  identical-code:
     config:
-      threshold: 4
+      threshold: # language-specific defaults. an override will affect all languages.
