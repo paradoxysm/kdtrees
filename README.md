@@ -6,6 +6,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
 [![PyPI](https://img.shields.io/pypi/v/kdtrees)](https://pypi.org/project/kdtrees/)
 ![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees?ref=badge_shield)
 
 ## Overview
 
@@ -49,3 +50,7 @@ Documentation for kdtrees can be found [here](https://github.com/paradoxysm/kdtr
 ### Issues and Questions
 
 Issues and Questions should be posed to the issue tracker [here](https://github.com/paradoxysm/kdtrees/issues)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees?ref=badge_large)
