@@ -2,9 +2,9 @@
 
 All documentation for kdtrees is located here!
 
-[**pydoc**](pydoc) : Documentation regarding python classes and functions.
+[**pydoc**](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc) : Documentation regarding python classes and functions.
 
-[**guides**](guides) : Guides on kdtrees usage.
+[**guides**](https://github.com/paradoxysm/kdtrees/tree/master/doc/guides) : Guides on kdtrees usage.
 
 # KDTrees Overview
 
@@ -16,9 +16,9 @@ kdtrees supports all builtin types and numpy types. However, additional support 
 
 **Construction**
 
-kdtrees constructs a K-D Tree from a given list of points in a manner such that a pseudo-balanced tree is produced (i.e. A tree that satisfies the secondary invariant). It does this by presorting the list of points along each of the available axes. At each recursive entry, the median point along an alternating axis of discrimination is chosen as the root of the sub-tree. This produces a pseudo-balanced tree in *O(nlogn)*
+kdtrees constructs a K-D Tree from a given list of points in a manner such that a pseudo-balanced tree is produced (i.e. A tree that satisfies the secondary invariant). It does this by presorting the list of points along each of the available axes. At each recursive entry, the median point along an alternating axis of discrimination is chosen as the root of the sub-tree. This produces a pseudo-balanced tree in *O(nlogn)*. For details see [`initialize`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#initialize).
 
-**visualization**
+**Visualization**
 
 kdtrees can be visualized in a preorder traversal. This is one such example:
 
@@ -31,27 +31,28 @@ kdtrees can be visualized in a preorder traversal. This is one such example:
 		None
 		None
 ```
+For details see [`visualize`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#visualize).
 
 **Insertion and Deletion**
 
-kdtrees supports insertion and deletion in preorder traversal. The tree automatically balances as needed. It runs in *O(logn)*
+kdtrees supports insertion and deletion in preorder traversal. The tree automatically balances as needed. It runs in *O(logn)*. For details see [`insert`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#insert) and [`delete`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#delete).
 
 **Searching**
 
-kdtrees supports searches in preorder traversal, running in *O(logn)*. kdtrees searches and produces the KDTree that holds the queried value. Finding none, it will return None.
+kdtrees supports searches in preorder traversal, running in *O(logn)*. kdtrees searches and produces the KDTree that holds the queried value. Finding none, it will return None. For details see [`search`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#search).
 
 **Aggregating**
 
-kdtrees can aggregate all subsidiary nodes, produced as a list in preorder, running in *O(logn)*.
+kdtrees can aggregate all subsidiary nodes, produced as a list in preorder, running in *O(logn)*. For details see [`collect`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#collect).
 
 **Balancing**
 
-kdtrees balances in a pseudo-balanced manner, satisfying the secondary invariant. If the KDTree does not satisfy this invariant, it is reconstructed anew and thus returned to pseudo-balance.
+kdtrees balances in a pseudo-balanced manner, satisfying the secondary invariant. If the KDTree does not satisfy this invariant, it is reconstructed anew and thus returned to pseudo-balance. For details see [`balance`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#balance).
 
 **K-Nearest Neighbors**
 
-kdtrees supports finding k-nearest neighbors, finding a specified number of (1 if not specified) of nodes that are closest to the query point. Ties are broken based on the preorder traversal (i.e. left-most nodes are prioritized). It produces a list of tuples, containing the value of the node and its corresponding distance to the query point.
+kdtrees supports finding k-nearest neighbors, finding a specified number of (1 if not specified) of nodes that are closest to the query point. Ties are broken based on the preorder traversal (i.e. left-most nodes are prioritized). It produces a list of tuples, containing the value of the node and its corresponding distance to the query point. For details see [`nearest_neighbor`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#nearest_neighbor).
 
 **Neighbors-within-Distance**
 
-kdtrees is also able to find all neighbors within a specified distance (0 if not specified). This produces a list of tuples, containing the value of the node and its corresponding distance to the query point.
+kdtrees is also able to find all neighbors within a specified distance (0 if not specified). This produces a list of tuples, containing the value of the node and its corresponding distance to the query point. For details see [`proximal_neighbor`](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc/doc_kdtree.md#proximal_neighbor).
