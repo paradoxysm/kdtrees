@@ -39,20 +39,7 @@ nodes : int
  Number of nodes in the KDTree, including itself.
 ```
 
-## visualize
-```python
-KDTree.visualize(self, depth=0)
-```
-
-Prints a visual representation of the KDTree.
-
-**Parameters**
-```python
-depth : int, default=0
- Depth of the KDTree node. A depth of 0 implies the root.
-```
-
-**initialize**
+## initialize
 ```python
 KDTree.initialize(points, k=None, init_axis=0, accept=None)
 ```
@@ -81,6 +68,19 @@ accept : KDTreeType or None
 ```python
 tree : KDTree
  The root of the KDTree built from `points`
+```
+
+## visualize
+```python
+KDTree.visualize(self, depth=0)
+```
+
+Prints a visual representation of the KDTree.
+
+**Parameters**
+```python
+depth : int, default=0
+ Depth of the KDTree node. A depth of 0 implies the root.
 ```
 
 ## insert
