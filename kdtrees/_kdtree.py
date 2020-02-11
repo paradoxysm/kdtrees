@@ -148,7 +148,7 @@ class KDTree:
 			sorted_right_points.append(right_points)
 			left_mask = np.all(np.isin(points, sorted_points[axis][:median]), axis=-1)
 			left_points = points[np.where(left_mask)]
-			sorted_right_points.append(left_points)
+			sorted_left_points.append(left_points)
 		sorted_right_points = np.asarray(sorted_right_points)
 		sorted_left_points = np.asarray(sorted_left_points)
 		axis = axis + 1 if axis + 1 < k else 0
@@ -173,8 +173,7 @@ class KDTree:
 		if self.left:
 			heights.append(self.left.height)
 			nodes += self.left.nodes
-		if len(heights) > 0:
-			self.height = np.max(heights) + 1
+		self.height = np.max(heights) + 1 if len(heights) > 0 else 1
 		self.nodes = nodes + 1
 
 	def insert(self, point):
@@ -199,12 +198,12 @@ class KDTree:
 			if self.right is None:
 				self.right = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
-				self.right.insert(point)
+				self.right = self.right.insert(point)
 		elif point[self.axis] < self.value[self.axis]:
 			if self.left is None:
 				self.left = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
-				self.left.insert(point)
+				self.left = self.left.insert(point)
 		self._recalculate_height_nodes()
 		return self.balance()
 
@@ -271,22 +270,16 @@ class KDTree:
 			else:
 				new_tree = self.right.delete(point)
 				self.right = new_tree
-				self.height = np.max([self.height, self.right.height + 1])
-				ln = self.left.nodes if self.left else 0
-				self.nodes = ln + self.right.nodes + 1
-				self.balance()
-				return self
+				self._recalculate_height_nodes()
+				return self.balance()
 		else:
 			if self.left is None:
 				return self
 			else:
 				new_tree = self.left.delete(point)
 				self.left = new_tree
-				self.height = np.max([self.height, self.left.height + 1])
-				rn = self.right.nodes if self.right else 0
-				self.nodes = rn + self.left.nodes + 1
-				self.balance()
-				return self
+				self._recalculate_height_nodes()
+				return self.balance()
 
 	def collect(self):
 		"""
@@ -318,7 +311,7 @@ class KDTree:
 		"""
 		if not self.invariant():
 			values = self.collect()
-			KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
+			return KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
 		return self
 
 	def invariant(self):
@@ -366,14 +359,14 @@ class KDTree:
 			neighbors = [(None, np.inf)] * n
 		neighbors = np.asarray(neighbors)
 		dist = np.linalg.norm(point - self.value)
-		idx = neighbors[:][1].searchsorted(dist)
-		if idx < len(distances):
-			neighbors = np.insert(neighbors, idx, (self.value, dist))[:n]
-		if point[self.axis] + distances[-1] >= self.value[self.axis]:
+		idx = neighbors[:,1].searchsorted(dist)
+		if idx < len(neighbors):
+			neighbors = np.insert(neighbors, idx, np.asarray([self.value, dist]), axis=0)[:n]
+		if point[self.axis] + neighbors[-1,1] >= self.value[self.axis] and self.right:
 			neighbors = self.right.nearest_neighbor(point, n=n, neighbors=neighbors)
-		if point[self.axis] - distances[-1] < self.value[self.axis]:
+		if point[self.axis] - neighbors[-1,1] < self.value[self.axis] and self.left:
 			neighbors = self.left.nearest_neighbor(point, n=n, neighbors=neighbors)
-		return neighbours
+		return neighbors
 
 	def proximal_neighbor(self, point, d=0, neighbors=[]):
 		"""
@@ -409,8 +402,11 @@ class KDTree:
 		neighbors = np.asarray(neighbors)
 		dist = np.linalg.norm(point - self.value)
 		if dist <= d and point != self.value:
-			idx = neighbors[:][1].searchsorted(dist)
-			neighbors = np.insert(neighbors, idx, (self.value, dist))
+			if len(neighbors) > 0:
+				idx = neighbors[:,1].searchsorted(dist)
+				neighbors = np.insert(neighbors, idx, np.asarray([self.value, dist]), axis=0)
+			else:
+				neighbors = np.asarray([[self.value, dist]])
 		if self.right and point[self.axis] + d >= self.value[self.axis]:
 			neighbors = self.right.proximal_neighbor(point, d=d, neighbors=neighbors)
 		if self.left and point[self.axis] - d < self.value[self.axis]:
