@@ -11,7 +11,7 @@ a secondary invariant such that any node is the
 median ± dimensionality of all nodes contained in the KDTree.
 
 **Parameters**
-```python
+```
 value : array-like
  Value at the KDTree node.
 
@@ -25,7 +25,7 @@ axis : int, default=0
 **Attributes**
 
 In addition to all parameters:
-```python
+```
 left : KDTree
  Left child of the KDTree.
 
@@ -50,7 +50,7 @@ balancing by selecting the median along each axis of discrimination
 as the root.
 
 **Parameters**
-```python
+```
 points : array-like, shape (n_points, *)
  List of points to build a KDTree where the last axis denotes the features
 
@@ -65,7 +65,7 @@ accept : KDTreeType or None
 ```
 
 **Returns**
-```python
+```
 tree : KDTree
  The root of the KDTree built from `points`
 ```
@@ -78,7 +78,7 @@ KDTree.visualize(self, depth=0)
 Prints a visual representation of the KDTree.
 
 **Parameters**
-```python
+```
 depth : int, default=0
  Depth of the KDTree node. A depth of 0 implies the root.
 ```
@@ -91,13 +91,13 @@ KDTree.insert(self, point)
 Insert a point into the KDTree.
 
 **Parameters**
-```python
+```
 point : array-like or scalar
  The point to be inserted, where the last axis denotes the features.
 ```
 
 **Returns**
-```python
+```
 tree : KDTree
  The root of the KDTree with `point` inserted.
 ```
@@ -111,13 +111,13 @@ Search the KDTree for a point.
 Returns the KDTree node if found, None otherwise.
 
 **Parameters**
-```python
+```
 point : array-like or scalar
  The point being searched, where the last axis denotes the features.
 ```
 
 **Returns**
-```python
+```
 tree : KDTree or None
  The KDTree node whose value matches the point.
  None if the point was not found in the tree.
@@ -132,13 +132,13 @@ Delete a point from the KDTree and return the new
 KDTree. Returns the same tree if the point was not found.
 
 **Parameters**
-```python
+```
 point : array-like or scalar
  The point to be deleted, where the last axis denotes the features.
 ```
 
 **Returns**
-```python
+```
 tree : KDTree
  The root of the KDTree with `point` removed.
 ```
@@ -152,7 +152,7 @@ Collect all values in the KDTree as a list,
 ordered in a depth-first manner.
 
 **Returns**
-```python
+```
 values : list
  A list of all the values in the KDTree.
 ```
@@ -165,7 +165,7 @@ KDTree.balance(self)
 Balance the KDTree if the secondary invariant is not satisfied.
 
 **Returns**
-```python
+```
 tree : KDTree
  The root of the newly pseudo-balanced KDTree
 ```
@@ -178,7 +178,7 @@ KDTree.invariant(self)
 Verify that the KDTree satisfies the secondary invariant.
 
 **Returns**
-```python
+```
 valid : bool
  True if the KDTree satisfies the secondary invariant.
 ```
@@ -191,7 +191,7 @@ KDTree.nearest_neighbor(self, point, n=1, neighbors=[])
 Determine the `n` nearest KDTree nodes to `point` and their distances.
 
 **Parameters**
-```python
+```
 point : array-like or scalar
  The query point, where the last axis denotes the features.
 
@@ -205,7 +205,7 @@ neighbors : list, default=[]
 ```
 
 **Returns**
-```python
+```
 neighbors : list, shape (n_neighbors, 2)
  The list of `n` tuples, referring to `n` nearest neighbors.
 ```
@@ -219,7 +219,7 @@ Determine the KDTree nodes that are within `d` distance
 to `point` and their distances.
 
 **Parameters**
-```python
+```
 point : array-like or scalar
  The query point, where the last axis denotes the features.
 
@@ -234,7 +234,7 @@ neighbors : list, default=[]
 ```
 
 **Returns**
-```python
+```
 neighbors : list, shape (n_neighbors, 2)
  The list of `n` tuples, referring to proximal neighbors within
  `d` distance from `point`.
