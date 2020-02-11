@@ -42,5 +42,5 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities',
     ],
-	keywords=['kdtree'],
+	keywords=['kdtree', 'python', 'data-structures'],
     zip_safe=True)
