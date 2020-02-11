@@ -10,7 +10,7 @@ def read(*paths):
 
 setup(
 	name='kdtrees',
-	version='0.1.3',
+	version='0.1.4',
     description='Python implementation of a K-D Tree as a pseudo-balanced Tree',
     long_description=(read('README.md') + '\n\n'),
 	long_description_content_type="text/markdown",
