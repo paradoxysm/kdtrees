@@ -10,12 +10,12 @@ def read(*paths):
 
 setup(
 	name='kdtrees',
-	version='0.1.4',
+	version='0.1.5',
     description='Python implementation of a K-D Tree as a pseudo-balanced Tree',
     long_description=(read('README.md') + '\n\n'),
 	long_description_content_type="text/markdown",
 	url='http://github.com/paradoxysm/kdtrees',
-	download_url = 'https://github.com/paradoxysm/kdtrees/archive/v0.1.0.tar.gz',
+	download_url = 'https://github.com/paradoxysm/kdtrees/archive/v0.1.5.tar.gz',
     author='paradoxysm',
 	author_email='jeffreychen.wang@gmail.com',
     license='BSD-3-Clause',
