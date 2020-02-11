@@ -140,13 +140,15 @@ class KDTree:
 		"""
 		median = len(sorted_points[axis]) // 2
 		tree = KDTree(sorted_points[axis][median], k=k, axis=axis, accept=accept)
-		right_points = sorted_points[axis][median+1:]
-		left_points = sorted_points[axis][:median]
 		sorted_right_points = []
 		sorted_left_points = []
 		for points in sorted_points:
-			sorted_right_points.append(points[np.where(np.all(np.isin(points, right_points), axis=-1))])
-			sorted_left_points.append(points[np.where(np.all(np.isin(points, left_points), axis=-1))])
+			right_mask = np.all(np.isin(points, sorted_points[axis][median+1:]), axis=-1)
+			right_points = points[np.where(right_mask)]
+			sorted_right_points.append(right_points)
+			left_mask = np.all(np.isin(points, sorted_points[axis][:median]), axis=-1)
+			left_points = points[np.where(left_mask)]
+			sorted_right_points.append(left_points)
 		sorted_right_points = np.asarray(sorted_right_points)
 		sorted_left_points = np.asarray(sorted_left_points)
 		axis = axis + 1 if axis + 1 < k else 0
