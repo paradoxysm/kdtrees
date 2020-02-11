@@ -21,7 +21,7 @@ More details regarding this implementation can be found [here](https://github.co
 kdtrees requires:
 - numpy >= 1.18.0
 
-kdtrees is tested and supported on Python 3.5 and Python 3.6. Usage on other versions of Python is not guaranteed to work as intended.
+kdtrees is tested and supported on Python 3.4+ up to Python 3.7. Usage on other versions of Python is not guaranteed to work as intended.
 
 ### User Installation
 
