@@ -4,8 +4,6 @@ All documentation for kdtrees is located here!
 
 [**pydoc**](https://github.com/paradoxysm/kdtrees/tree/master/doc/pydoc) : Documentation regarding python classes and functions.
 
-[**guides**](https://github.com/paradoxysm/kdtrees/tree/master/doc/guides) : Guides on kdtrees usage.
-
 # KDTrees Overview
 
 kdtrees implements a K-D Tree in a pseudo-balanced tree. A pseudo-balanced tree, in kdtrees, is defined by an invariant where all nodes must be the median ± dimensionality of subsidiary nodes along a specific axis.
