@@ -17,6 +17,7 @@ setup(
 	url='http://github.com/paradoxysm/kdtrees',
 	download_url = 'https://github.com/paradoxysm/kdtrees/archive/v0.1.0.tar.gz',
     author='paradoxysm',
+	author_email='jeffreychen.wang@gmail.com',
     license='BSD-3-Clause',
     packages=find_packages(),
     install_requires=[
