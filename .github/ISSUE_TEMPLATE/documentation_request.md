@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: Documentation request
 about: Suggest improvement to the documentation. Alternatively you can just open a pull request with the suggested change.
 title: ''
 labels: documentation
