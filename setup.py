@@ -18,7 +18,7 @@ setup(
     license='BSD-3-Clause',
     packages=find_packages(),
     install_requires=[
-		'numpy'
+		'numpy>=1.18'
     ],
 	extras_require={
         'test': ['pytest', 'coverage', 'pytest-cov']
