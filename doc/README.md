@@ -22,7 +22,7 @@ kdtrees constructs a K-D Tree from a given list of points in a manner such that 
 
 kdtrees can be visualized in a preorder traversal. This is one such example:
 
-```
+```python
 [0 2 0], axis: 0, height: 2, nodes: 3
 	[1 1 1], axis: 1, height: 1, nodes: 1
 		None
