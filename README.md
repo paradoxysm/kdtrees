@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.com/paradoxysm/kdtrees.svg?branch=master)](https://travis-ci.com/paradoxysm/kdtrees)
 [![codecov](https://codecov.io/gh/paradoxysm/kdtrees/branch/master/graph/badge.svg)](https://codecov.io/gh/paradoxysm/kdtrees)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
-![PyPI](https://img.shields.io/pypi/v/kdtrees)
+[![PyPI](https://img.shields.io/pypi/v/kdtrees)](https://pypi.org/project/kdtrees/)
 ![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
 
 ## Overview
