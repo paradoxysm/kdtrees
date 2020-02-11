@@ -15,7 +15,7 @@ class KDTreeType(ABC, list):
 		return not self.__eq__(other)
 
 	@abstractmethod
-	def __len__(self, key):
+	def __len__(self):
 		raise NotImplementedError("__len__ not implemented")
 
 	@abstractmethod
