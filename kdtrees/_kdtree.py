@@ -138,13 +138,15 @@ class KDTree:
 		tree = KDTree(sorted_points[axis][median], k=k, axis=axis, accept=accept)
 		sorted_right_points = []
 		sorted_left_points = []
+		right_points = sorted_points[axis][median+1:]
+		left_points = sorted_points[axis][:median]
 		for points in sorted_points:
-			right_mask = np.all(np.isin(points, sorted_points[axis][median+1:]), axis=-1)
-			right_points = points[np.where(right_mask)]
-			sorted_right_points.append(right_points)
-			left_mask = np.all(np.isin(points, sorted_points[axis][:median]), axis=-1)
-			left_points = points[np.where(left_mask)]
-			sorted_left_points.append(left_points)
+			right_dim_masks = [np.isin(points[:,x], right_points[:,x]) for x in range(k)]
+			right_mask = np.all(np.stack(right_dim_masks, axis=-1), axis=-1)
+			sorted_right_points.append(points[right_mask])
+			left_dim_masks = [np.isin(points[:,x], left_points[:,x]) for x in range(k)]
+			left_mask = np.all(np.stack(left_dim_masks, axis=-1), axis=-1)
+			sorted_left_points.append(points[left_mask])
 		sorted_right_points = np.asarray(sorted_right_points)
 		sorted_left_points = np.asarray(sorted_left_points)
 		axis = axis + 1 if axis + 1 < k else 0
