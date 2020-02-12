@@ -36,9 +36,6 @@ class KDTree:
 	right : KDTree
 		Right child of the KDTree.
 
-	height : int
-		Height of the KDTree.
-
 	nodes : int
 		Number of nodes in the KDTree, including itself.
 	"""
@@ -48,7 +45,6 @@ class KDTree:
 		self.axis = axis
 		self.left = None
 		self.right = None
-		self.height = 1
 		self.nodes = 1
 		self.accept = accept
 
@@ -61,7 +57,7 @@ class KDTree:
 		depth : int, default=0
 			Depth of the KDTree node. A depth of 0 implies the root.
 		"""
-		print('\t' * depth + str(self.value) + ", axis: " + str(self.axis) + ", height: " + str(self.height) + ", nodes: " + str(self.nodes))
+		print('\t' * depth + str(self.value) + ", axis: " + str(self.axis) + ", nodes: " + str(self.nodes))
 		if self.right:
 			self.right.visualize(depth=depth+1)
 		else:
@@ -156,24 +152,20 @@ class KDTree:
 			tree.right = KDTree._initialize_recursive(sorted_right_points, k, axis, accept)
 		if len(sorted_points[axis][:median]) > 0:
 			tree.left = KDTree._initialize_recursive(sorted_left_points, k, axis, accept)
-		tree._recalculate_height_nodes()
+		tree._recalculate_nodes()
 		return tree
 
-	def _recalculate_height_nodes(self):
+	def _recalculate_nodes(self):
 		"""
-		Recalculate the height and nodes of the KDTree,
+		Recalculate the number of nodes of the KDTree,
 		assuming that the KDTree's children are correctly
 		calculated.
 		"""
-		heights = []
 		nodes = 0
 		if self.right:
-			heights.append(self.right.height)
 			nodes += self.right.nodes
 		if self.left:
-			heights.append(self.left.height)
 			nodes += self.left.nodes
-		self.height = np.max(heights) + 1 if len(heights) > 0 else 1
 		self.nodes = nodes + 1
 
 	def insert(self, point):
@@ -204,7 +196,7 @@ class KDTree:
 				self.left = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
 				self.left = self.left.insert(point)
-		self._recalculate_height_nodes()
+		self._recalculate_nodes()
 		return self.balance()
 
 	def search(self, point):
@@ -270,7 +262,7 @@ class KDTree:
 			else:
 				new_tree = self.right.delete(point)
 				self.right = new_tree
-				self._recalculate_height_nodes()
+				self._recalculate_nodes()
 				return self.balance()
 		else:
 			if self.left is None:
@@ -278,7 +270,7 @@ class KDTree:
 			else:
 				new_tree = self.left.delete(point)
 				self.left = new_tree
-				self._recalculate_height_nodes()
+				self._recalculate_nodes()
 				return self.balance()
 
 	def collect(self):
