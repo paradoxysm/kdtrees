@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/paradoxysm/kdtrees/branch/master/graph/badge.svg)](https://codecov.io/gh/paradoxysm/kdtrees)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kdtrees)
 [![PyPI](https://img.shields.io/pypi/v/kdtrees)](https://pypi.org/project/kdtrees/)
-![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)
+[![GitHub](https://img.shields.io/github/license/paradoxysm/kdtrees?color=blue)](https://github.com/paradoxysm/kdtrees/blob/master/LICENSE)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/34ab5f0112f08e766e09/maintainability)](https://codeclimate.com/github/paradoxysm/kdtrees/maintainability)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparadoxysm%2Fkdtrees?)
