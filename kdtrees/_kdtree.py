@@ -8,7 +8,7 @@
 import numpy as np
 
 from . import _utils as utils
-from .kdtree_type import KDTreeType
+from ._kdtree_type import KDTreeType
 
 class KDTree:
 	"""
