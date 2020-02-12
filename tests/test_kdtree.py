@@ -32,12 +32,19 @@ def test_initialize_1D(points_1d, init_1d_exp):
 	assert np.all(tree.value == init_1d_exp)
 
 @pytest.mark.parametrize("points_2d,init_2d_exp", [
-	([[0,0],[1,1],[2,0]],  np.asarray([1,1])),
+	([[0,0],[1,1],[2,0]],  "[1 1], axis: 0, nodes: 3\n" + \
+							"\t[2 0], axis: 1, nodes: 1\n" + \
+							"\t\tNone\n\t\tNone\n" + \
+							"\t[0 0], axis: 1, nodes: 1\n" + \
+							"\t\tNone\n\t\tNone\n"
+							),
 ])
 
-def test_initialize_2D(points_2d, init_2d_exp):
+def test_initialize_2D(points_2d, init_2d_exp, capsys):
 	tree = KDTree.initialize(points_2d)
-	assert np.all(tree.value == init_2d_exp)
+	tree.visualize()
+	captured = capsys.readouterr()
+	assert captured.out == init_2d_exp
 
 @pytest.mark.parametrize("points_3d,init_3d_exp", [
 	([[0,0,0],[1,1,1],[0,2,0]], np.asarray([0,2,0])),
@@ -120,6 +127,35 @@ def test_insert_1D(points_1d_insert, insert_1d, insert_1d_exp, capsys):
 	captured = capsys.readouterr()
 	assert captured.out == insert_1d_exp
 
+@pytest.mark.parametrize("points_2d_insert,insert_2d,insert_2d_exp", [
+	([[0,0],[1,1]], [1,0], "[1 1], axis: 0, nodes: 3\n" + \
+							"\t[1 0], axis: 1, nodes: 1\n" + \
+							"\t\tNone\n\t\tNone\n" + \
+							"\t[0 0], axis: 1, nodes: 1\n" + \
+							"\t\tNone\n\t\tNone\n"
+							),
+	([[0,0],[1,1],[1,0]], [2,0], "[1 1], axis: 0, nodes: 4\n" + \
+									"\t[1 0], axis: 1, nodes: 2\n" + \
+									"\t\t[2 0], axis: 0, nodes: 1\n" + \
+									"\t\t\tNone\n\t\t\tNone\n" + \
+									"\t\tNone\n" + \
+									"\t[0 0], axis: 1, nodes: 1\n" + \
+									"\t\tNone\n\t\tNone\n"
+									),
+	([[0,0],[1,1]], [0,0], "[1 1], axis: 0, nodes: 2\n" + \
+							"\tNone\n" + \
+							"\t[0 0], axis: 1, nodes: 1\n" + \
+							"\t\tNone\n\t\tNone\n"
+							),
+])
+
+def test_insert_2D(points_2d_insert, insert_2d, insert_2d_exp, capsys):
+	tree = KDTree.initialize(points_2d_insert)
+	tree = tree.insert(insert_2d)
+	tree.visualize()
+	captured = capsys.readouterr()
+	assert captured.out == insert_2d_exp
+
 def test_insert_mismatch():
 	tree = KDTree.initialize([1,2])
 	with pytest.raises(ValueError):
@@ -188,6 +224,27 @@ def test_delete_1D(points_1d_delete, delete_1d, delete_1d_exp, capsys):
 	tree.visualize()
 	captured = capsys.readouterr()
 	assert captured.out == delete_1d_exp
+
+@pytest.mark.parametrize("points_2d_delete,delete_2d,delete_2d_exp", [
+	([[0,0],[1,1],[1,0]], [1,0], "[1 1], axis: 0, nodes: 2\n" + \
+									"\tNone\n" + \
+									"\t[0 0], axis: 1, nodes: 1\n" + \
+									"\t\tNone\n\t\tNone\n"
+									),
+	([[0,0],[1,1],[1,0]], [2,0], "[1 1], axis: 0, nodes: 3\n" + \
+									"\t[1 0], axis: 1, nodes: 1\n" + \
+									"\t\tNone\n\t\tNone\n" + \
+									"\t[0 0], axis: 1, nodes: 1\n" + \
+									"\t\tNone\n\t\tNone\n"
+									),
+])
+
+def test_delete_2D(points_2d_delete, delete_2d, delete_2d_exp, capsys):
+	tree = KDTree.initialize(points_2d_delete)
+	tree = tree.delete(delete_2d)
+	tree.visualize()
+	captured = capsys.readouterr()
+	assert captured.out == delete_2d_exp
 
 def test_delete_mismatch():
 	tree = KDTree.initialize([1,2])
