@@ -41,7 +41,9 @@ See the [changelog](https://github.com/paradoxysm/kdtrees/tree/master/CHANGES.md
 
 ## Development
 
-kdtrees is fully implemented for basic functionality. However, it may not have every utility function or have the most optimized algorithms. We welcome new contributors of all experience lelevels to help grow and improve kdtrees. Guides on development, testing, and contribution are in the works!
+kdtrees is fully implemented for basic functionality. However, it may not have every utility function or have the most optimized algorithms. We welcome contributors of all experience levels to help grow and improve kdtrees. Guides on development, testing, and contribution are in the works!
+
+Currently, particular contributions regarding pytests and documentation would be greatly appreciated. Guides and examples of usage are warmly welcomed.
 
 ## Help and Support
 
