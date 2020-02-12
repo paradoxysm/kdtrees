@@ -153,7 +153,7 @@ def test_search_mismatch():
 							"\t\t[1], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n"
 							),
-	([1,2,3], 3, "[2], axis: 0,  nodes: 2\n" + \
+	([1,2,3], 3, "[2], axis: 0, nodes: 2\n" + \
 					"\tNone\n" + \
 					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
