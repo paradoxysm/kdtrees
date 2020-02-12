@@ -248,7 +248,7 @@ class KDTree:
 		"""
 		point = utils.format_array(point, accept=self.accept)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
-			raise ValueError("Point must be same dimensionality as the KDCoreTree")
+			raise ValueError("Point must be same dimensionality as the KDTree")
 		if np.all(self.value == point):
 			values = self.collect()
 			if len(values) > 1:
