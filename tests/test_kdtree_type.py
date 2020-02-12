@@ -31,8 +31,3 @@ def test_abstract_len(kd_subtype):
 def test_abstract_get(kd_subtype):
 	with pytest.raises(NotImplementedError):
 		assert kd_subtype(1)[0]
-
-def test_abstract_iter(kd_subtype):
-	with pytest.raises(NotImplementedError):
-		for i in kd_subtype(1):
-			break
