@@ -188,7 +188,9 @@ class KDTree:
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		axis = self.axis + 1 if self.axis + 1 < self.k else 0
-		if point[self.axis] > self.value[self.axis]:
+		if np.all(self.value == point):
+			return self
+		elif point[self.axis] >= self.value[self.axis]:
 			if self.right is None:
 				self.right = KDTree(value=point, k=self.k, axis=axis, accept=self.accept)
 			else:
@@ -222,7 +224,7 @@ class KDTree:
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		elif np.all(self.value == point):
 			return self
-		elif point[self.axis] > self.value[self.axis]:
+		elif point[self.axis] >= self.value[self.axis]:
 			if self.right is None:
 				return None
 			else:
@@ -258,7 +260,7 @@ class KDTree:
 				new_tree = KDTree.initialize(values, k=self.k, init_axis=self.axis, accept=self.accept)
 				return new_tree
 			return None
-		elif point[self.axis] > self.value[self.axis]:
+		elif point[self.axis] >= self.value[self.axis]:
 			if self.right is None:
 				return self
 			else:
