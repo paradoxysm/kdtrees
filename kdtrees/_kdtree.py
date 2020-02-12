@@ -286,8 +286,7 @@ class KDTree:
 			A list of all the values in the KDTree.
 		"""
 		values = []
-		if self.value is not None:
-			values.append(self.value)
+		values.append(self.value)
 		if self.right is not None:
 			values += self.right.collect()
 		if self.left is not None:
