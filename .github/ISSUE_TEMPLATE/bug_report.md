@@ -30,7 +30,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - Python: [e.g. 3.7]
  - OS: [e.g. iOS]
- - Version [e.g. 22]
+ - Version: [e.g. 22]
 
 **Additional context**
 

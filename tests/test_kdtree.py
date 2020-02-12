@@ -10,7 +10,6 @@ def test_init():
 	assert tree.axis == 0
 	assert tree.left == None
 	assert tree.right == None
-	assert tree.height == 1
 	assert tree.nodes == 1
 
 def test_init_with_params():
@@ -20,7 +19,6 @@ def test_init_with_params():
 	assert tree.axis == 1
 	assert tree.left == None
 	assert tree.right == None
-	assert tree.height == 1
 	assert tree.nodes == 1
 
 @pytest.mark.parametrize("points_1d,init_1d_exp", [
@@ -50,33 +48,33 @@ def test_initialize_3D(points_3d, init_3d_exp):
 	assert np.all(tree.value == init_3d_exp)
 
 @pytest.mark.parametrize("points_vis,vis_exp", [
-	([[0,0,0],[1,1,1],[0,2,0]], "[0 2 0], axis: 0, height: 2, nodes: 3\n" + \
-							"\t[1 1 1], axis: 1, height: 1, nodes: 1\n" + \
+	([[0,0,0],[1,1,1],[0,2,0]], "[0 2 0], axis: 0, nodes: 3\n" + \
+							"\t[1 1 1], axis: 1, nodes: 1\n" + \
 							"\t\tNone\n" + "\t\tNone\n" + \
-							"\t[0 0 0], axis: 1, height: 1, nodes: 1\n" + \
+							"\t[0 0 0], axis: 1, nodes: 1\n" + \
 							"\t\tNone\n" + "\t\tNone\n"
 							),
-	([4,2,5,7,1,9,3], "[4], axis: 0, height: 3, nodes: 7\n" + \
-						"\t[7], axis: 0, height: 2, nodes: 3\n" + \
-						"\t\t[9], axis: 0, height: 1, nodes: 1\n" + \
+	([4,2,5,7,1,9,3], "[4], axis: 0, nodes: 7\n" + \
+						"\t[7], axis: 0, nodes: 3\n" + \
+						"\t\t[9], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n" + \
-						"\t\t[5], axis: 0, height: 1, nodes: 1\n" + \
+						"\t\t[5], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n" + \
-						"\t[2], axis: 0, height: 2, nodes: 3\n" + \
-						"\t\t[3], axis: 0, height: 1, nodes: 1\n" + \
+						"\t[2], axis: 0, nodes: 3\n" + \
+						"\t\t[3], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n"
-						"\t\t[1], axis: 0, height: 1, nodes: 1\n" + \
+						"\t\t[1], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n"
 						),
-	([4,2,5,7,1,9], "[5], axis: 0, height: 3, nodes: 6\n" + \
-						"\t[9], axis: 0, height: 2, nodes: 2\n" + \
+	([4,2,5,7,1,9], "[5], axis: 0, nodes: 6\n" + \
+						"\t[9], axis: 0, nodes: 2\n" + \
 						"\t\tNone\n" + \
-						"\t\t[7], axis: 0, height: 1, nodes: 1\n" + \
+						"\t\t[7], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n" + \
-						"\t[2], axis: 0, height: 2, nodes: 3\n" + \
-						"\t\t[4], axis: 0, height: 1, nodes: 1\n" + \
+						"\t[2], axis: 0, nodes: 3\n" + \
+						"\t\t[4], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n"
-						"\t\t[1], axis: 0, height: 1, nodes: 1\n" + \
+						"\t\t[1], axis: 0, nodes: 1\n" + \
 						"\t\t\tNone\n" + "\t\t\tNone\n"
 						),
 ])
@@ -95,22 +93,22 @@ def test_initialize_error():
 		assert KDTree.initialize([[0,0,0],[1,1,1],[0,2,0]], accept=BadType)
 
 @pytest.mark.parametrize("points_1d_insert,insert_1d, insert_1d_exp", [
-	([4,2,5,7,1,9], 3, "[4], axis: 0, height: 3, nodes: 7\n" + \
-							"\t[7], axis: 0, height: 2, nodes: 3\n" + \
-							"\t\t[9], axis: 0, height: 1, nodes: 1\n" + \
+	([4,2,5,7,1,9], 3, "[4], axis: 0, nodes: 7\n" + \
+							"\t[7], axis: 0, nodes: 3\n" + \
+							"\t\t[9], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n" + \
-							"\t\t[5], axis: 0, height: 1, nodes: 1\n" + \
+							"\t\t[5], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n" + \
-							"\t[2], axis: 0, height: 2, nodes: 3\n" + \
-							"\t\t[3], axis: 0, height: 1, nodes: 1\n" + \
+							"\t[2], axis: 0, nodes: 3\n" + \
+							"\t\t[3], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n"
-							"\t\t[1], axis: 0, height: 1, nodes: 1\n" + \
+							"\t\t[1], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n"
 							),
-	([1,2], 3, "[2], axis: 0, height: 2, nodes: 3\n" + \
-					"\t[3], axis: 0, height: 1, nodes: 1\n" + \
+	([1,2], 3, "[2], axis: 0, nodes: 3\n" + \
+					"\t[3], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n" + \
-					"\t[1], axis: 0, height: 1, nodes: 1\n" + \
+					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
 					),
 ])
@@ -144,42 +142,42 @@ def test_search_mismatch():
 		assert tree.search([0,0])
 
 @pytest.mark.parametrize("points_1d_delete,delete_1d, delete_1d_exp", [
-	([4,2,5,3,7,1,9], 3, "[4], axis: 0, height: 3, nodes: 6\n" + \
-							"\t[7], axis: 0, height: 2, nodes: 3\n" + \
-							"\t\t[9], axis: 0, height: 1, nodes: 1\n" + \
+	([4,2,5,3,7,1,9], 3, "[4], axis: 0, nodes: 6\n" + \
+							"\t[7], axis: 0, nodes: 3\n" + \
+							"\t\t[9], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n" + \
-							"\t\t[5], axis: 0, height: 1, nodes: 1\n" + \
+							"\t\t[5], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n" + \
-							"\t[2], axis: 0, height: 2, nodes: 2\n" + \
+							"\t[2], axis: 0, nodes: 2\n" + \
 							"\t\tNone\n"
-							"\t\t[1], axis: 0, height: 1, nodes: 1\n" + \
+							"\t\t[1], axis: 0, nodes: 1\n" + \
 							"\t\t\tNone\n" + "\t\t\tNone\n"
 							),
-	([1,2,3], 3, "[2], axis: 0, height: 2, nodes: 2\n" + \
+	([1,2,3], 3, "[2], axis: 0, nodes: 2\n" + \
 					"\tNone\n" + \
-					"\t[1], axis: 0, height: 1, nodes: 1\n" + \
+					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
 					),
-	([1,2], 1, "[2], axis: 0, height: 1, nodes: 1\n" + \
+	([1,2], 1, "[2], axis: 0, nodes: 1\n" + \
 					"\tNone\n" + "\tNone\n"
 					),
-	([1,2], 2, "[1], axis: 0, height: 1, nodes: 1\n" + \
+	([1,2], 2, "[1], axis: 0, nodes: 1\n" + \
 					"\tNone\n" + "\tNone\n"
 					),
-	([1,2], 3, "[2], axis: 0, height: 2, nodes: 2\n" + \
+	([1,2], 3, "[2], axis: 0, nodes: 2\n" + \
 					"\tNone\n" + \
-					"\t[1], axis: 0, height: 1, nodes: 1\n" + \
+					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
 					),
-	([1,2], 0, "[2], axis: 0, height: 2, nodes: 2\n" + \
+	([1,2], 0, "[2], axis: 0, nodes: 2\n" + \
 					"\tNone\n" + \
-					"\t[1], axis: 0, height: 1, nodes: 1\n" + \
+					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
 					),
-	([1,2,3,4], 4, "[2], axis: 0, height: 2, nodes: 3\n" + \
-					"\t[3], axis: 0, height: 1, nodes: 1\n" + \
+	([1,2,3,4], 4, "[2], axis: 0, nodes: 3\n" + \
+					"\t[3], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
-					"\t[1], axis: 0, height: 1, nodes: 1\n" + \
+					"\t[1], axis: 0, nodes: 1\n" + \
 					"\t\tNone\n" + "\t\tNone\n"
 					),
 ])

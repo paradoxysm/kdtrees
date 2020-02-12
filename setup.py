@@ -26,7 +26,7 @@ setup(
 	extras_require={
         'test': ['pytest', 'coverage', 'pytest-cov']
     },
-	python_requires='>= 3.4, <4',
+	python_requires='>=3.4, <4',
 	classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

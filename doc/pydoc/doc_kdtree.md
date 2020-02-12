@@ -32,9 +32,6 @@ left : KDTree
 right : KDTree
  Right child of the KDTree.
 
-height : int
- Height of the KDTree.
-
 nodes : int
  Number of nodes in the KDTree, including itself.
 ```
