@@ -1,5 +1,5 @@
 ---
-name: Pull request
+name: Pull request1
 about: Propose a pull request
 title: ''
 labels: ''
