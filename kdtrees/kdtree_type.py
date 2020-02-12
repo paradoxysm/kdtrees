@@ -77,16 +77,3 @@ class KDTreeType(ABC, list):
 			The 'item' and the 'index', `key`, of the KDTreeType.
 		"""
 		raise NotImplementedError("__getitem__ not implemented")
-
-	@abstractmethod
-	def __iter__(self):
-		"""
-		Return the next 'item' of the KDTreeType.
-		This needs to be defined based on the custom implementation.
-
-		Yields
-		------
-		item : object
-			The next 'item' of the KDTreeType.
-		"""
-		raise NotImplementedError("__iter__ not implemented")
