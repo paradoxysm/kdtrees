@@ -12,7 +12,8 @@
 ### Version 0.1.6-prerelease
 
 This is a pre-release record of changes that will be implemented in kdtrees 0.1.6.
-- ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__iter__` no longer required for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/kdtree_type.md).
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__iter__` no longer required for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py).
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `height` no longer an atribute in [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree.py).
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`setup.py`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/setup.py) fixed with updates to metadata.
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : [Overview](https://github.com/paradoxysm/kdtrees/blob/0.1.6/README.md#Overview) description of [README](https://github.com/paradoxysm/kdtrees/blob/0.1.6/README.md) is now expanded slightly and includes a link to [Wikipedia](https://en.wikipedia.org/wiki/K-d_tree) for further reading.
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : Updates to [doc_kdtree.md](https://github.com/paradoxysm/kdtrees/blob/0.1.6/doc/pydoc/doc_kdtree.md) to fix the [`initialize`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/doc/pydoc/doc_kdtree.md#initialize) header.
