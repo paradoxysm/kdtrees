@@ -11,11 +11,14 @@ class KDTreeType(ABC, list):
 	"""
 	An abstract base super class (interface) for creating custom
 	types that kdtrees can accept. Any custom type must extend
-	KDTreeType to be acceptable. Based on the purpose of a K-D Tree,
-	KDTreeTypes must be comparable, indexable, and iterable.
+	`KDTreeType` to be acceptable. Based on the purpose of a K-D Tree,
+	`KDTreeTypes` must be comparable, indexable, and implement dimensionality
+	as well as distance.
 	"""
-	def __init__(self):
-		pass
+	def __init__(self, dim):
+		if not isinstance(dim, int):
+			raise ValueError("dim must be an int")
+		self.dim = dim
 
 	def __eq__(self, other):
 		"""
@@ -68,12 +71,29 @@ class KDTreeType(ABC, list):
 	@abstractmethod
 	def __getitem__(self, key):
 		"""
-		Return the 'item' and the 'index', `key`, of the KDTreeType.
+		Return the 'item' and the 'index', `key`, of the `KDTreeType`.
 		This needs to be defined based on the custom implementation.
 
 		Returns
 		-------
 		item : object
-			The 'item' and the 'index', `key`, of the KDTreeType.
+			The 'item' and the 'index', `key`, of the `KDTreeType`.
 		"""
 		raise NotImplementedError("__getitem__ not implemented")
+
+	@abstractmethod
+	def distance(self, other):
+		"""
+		Calculate the 'distance' between this `KDTreeType` and `other`.
+
+		Parameters
+		----------
+		other : object
+			The object in question.
+
+		Returns
+		-------
+		dist : float
+			'Distance' between this `KDTreeType` and `other`
+		"""
+		raise NotImplementedError("distance not implemented")
