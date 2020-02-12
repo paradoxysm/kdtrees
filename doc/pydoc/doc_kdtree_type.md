@@ -77,17 +77,3 @@ This needs to be defined based on the custom implementation.
 item : object
 	The 'item' and the 'index', `key`, of the KDTreeType.
 ```
-
-## __iter__
-```python
-for item in KDTreeType:
-	print(item)
-```
-Return the next 'item' of the KDTreeType.
-This needs to be defined based on the custom implementation.
-
-**Yields**
-```
-item : object
-	The next 'item' of the KDTreeType.
-```
