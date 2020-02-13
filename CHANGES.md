@@ -9,13 +9,18 @@
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : An update to the documentation.
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Miscellaneous updates such as package structure or GitHub quality of life updates.
 
+### Version 0.1.7-prerelease
+
+This is a prerelease record of changes that will be implemented in `kdtrees 0.1.7`.
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_kdtrees.nearest_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) and [`_kdtrees.proximal_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) now properly call [`_utils.distance`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) with `accept` override applied as per [ISS #7](https://github.com/paradoxysm/kdtrees/issues/7).
+
 ### Version 0.1.6
 
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__iter__` no longer required for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) as per [ISS #2](https://github.com/paradoxysm/kdtrees/issues/2).
-- ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `height` no longer an atribute in [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree.py) as per [ISS #6](https://github.com/paradoxysm/kdtrees/issues/6).
+- ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `height` no longer an attribute in [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree.py) as per [ISS #6](https://github.com/paradoxysm/kdtrees/issues/6).
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`setup.py`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/setup.py) fixed with updates to metadata.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : Fixed equality and comparison checks in [`_kdtrees.insert`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtrees.py), [`_kdtrees.search`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtrees.py), and [`_kdtrees.delete`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtrees.py) as per [ISS #3](https://github.com/paradoxysm/kdtrees/issues/3).
-- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_utils.distance`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_utils.py) now implemented as per [ISS #4](https://github.com/paradoxysm/kdtrees/issues/4). Allows accet overriding to properly use `nearest_neighbor` and `proximal_neighbor`.
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_utils.distance`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_utils.py) now implemented as per [ISS #4](https://github.com/paradoxysm/kdtrees/issues/4). Allows accept overriding to properly use `nearest_neighbor` and `proximal_neighbor`.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : Accept overriding is now properly implemented without fatal errors. This affected [`_utils.format_array`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_utils.py) and [`_utils.check_dimensionality`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_utils.py) as per [ISS #5](https://github.com/paradoxysm/kdtrees/issues/5).
 - ![Fix](https://img.shields.io/badge/-Fix-red) : Fixed mask extractions on presorted arrays in [`_kdtrees._initialize_recursive`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtrees.py)
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : [Overview](https://github.com/paradoxysm/kdtrees/blob/0.1.6/README.md#Overview) description of [README](https://github.com/paradoxysm/kdtrees/blob/0.1.6/README.md) is now expanded slightly and includes a link to [Wikipedia](https://en.wikipedia.org/wiki/K-d_tree) for further reading.
