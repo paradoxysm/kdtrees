@@ -69,19 +69,20 @@ function, use that instead. Uses `obj1.distance(obj2)`.
 
 **Parameters**
 ```
-obj1 : array-like or object, default=()
-	Tuple of array-like objects where the last axis denotes the features.
+obj1 : array-like or scalar or object
+	array-like or scalar where the last axis denotes the features.
+	If `accept` is an object, it can be this type.
 
-l : bool
-	`l` should be set to True if `args` is a tuple where every
-	item is semantically a list of items.
+obj2 : array-like or scalar or object
+	array-like or scalar where the last axis denotes the features.
+	If `accept` is an object, it can be this type.
 
 accept : None or object, default=None
-	Accept override type. Check the dimensionality attribute of this object
+	Accept override type. Use the `distance` function of this type.
 ```
 
 **Returns**
 ```
-dim : int
-	The dimensionality of all given arguments.
+distance : int
+	The distance between `obj1` and `obj2`.
 ```
