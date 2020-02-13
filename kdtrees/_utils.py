@@ -139,27 +139,27 @@ def distance(obj1, obj2, accept=None):
 
 	Parameters
 	----------
-	obj1 : array-like or object, default=()
-		Tuple of array-like objects where the last axis denotes the features.
+	obj1 : array-like or scalar or object
+		array-like or scalar where the last axis denotes the features.
+		If `accept` is an object, it can be this type.
 
-	l : bool
-		`l` should be set to True if `args` is a tuple where every
-		item is semantically a list of items.
+	obj2 : array-like or scalar or object
+		array-like or scalar where the last axis denotes the features.
+		If `accept` is an object, it can be this type.
 
 	accept : None or object, default=None
-		Accept override type. Check the dimensionality attribute of this object
+		Accept override type. Use the `distance` function of this type.
 
 	Returns
 	-------
-	dim : int
-		The dimensionality of all given arguments.
+	distance : int
+		The distance between `obj1` and `obj2`.
 	"""
 	if accept:
 		if isinstance(obj1, accept) and isinstance(obj2, accept):
 			return obj1.distance(obj2)
 		raise ValueError("`obj1` and `obj2` must be the same type as `accept`")
 	else:
-		try:
-			return np.linalg.norm(obj1 - obj2)
-		except:
-			raise ValueError("`obj1` and `obj2` must be vectors or scalars")
+		obj1 = format_array(obj1)
+		obj2 = format_array(obj2)
+		return np.linalg.norm(obj1 - obj2)
