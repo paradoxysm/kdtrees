@@ -9,9 +9,8 @@
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : An update to the documentation.
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Miscellaneous updates such as package structure or GitHub quality of life updates.
 
-### Version 0.1.6-prerelease
+### Version 0.1.6
 
-This is a pre-release record of changes that will be implemented in kdtrees 0.1.6.
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__iter__` no longer required for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) as per [ISS #2](https://github.com/paradoxysm/kdtrees/issues/2).
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `height` no longer an atribute in [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree.py) as per [ISS #6](https://github.com/paradoxysm/kdtrees/issues/6).
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`setup.py`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/setup.py) fixed with updates to metadata.
