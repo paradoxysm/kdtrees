@@ -353,7 +353,7 @@ class KDTree:
 		if len(neighbors) != n:
 			neighbors = [(None, np.inf)] * n
 		neighbors = np.asarray(neighbors)
-		dist = np.linalg.norm(point - self.value)
+		dist = utils.distance(point, self.value)
 		idx = neighbors[:,1].searchsorted(dist)
 		if idx < len(neighbors):
 			neighbors = np.insert(neighbors, idx, np.asarray([self.value, dist]), axis=0)[:n]
@@ -395,7 +395,7 @@ class KDTree:
 			exists = self.search(point)
 			return [(exists, 0.0)] if exists else []
 		neighbors = np.asarray(neighbors)
-		dist = np.linalg.norm(point - self.value)
+		dist = utils.distance(point, self.value)
 		if dist <= d and point != self.value:
 			if len(neighbors) > 0:
 				idx = neighbors[:,1].searchsorted(dist)
