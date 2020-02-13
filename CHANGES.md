@@ -24,6 +24,7 @@ This is a pre-release record of changes that will be implemented in kdtrees 0.1.
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : Added documentation for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/doc/pydoc/doc_kdtree_type.md).
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Created a variety of issues and pull request templates.
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Addition of codeclimate and FOSSAS license scanning.
+- ![Other](https://img.shields.io/badge/-Other-lightgrey) : `KDTreeType` is now in [`kdtrees._kdtree_type`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py)
 
 ### Version 0.1.5
 
@@ -35,4 +36,4 @@ This is a pre-release record of changes that will be implemented in kdtrees 0.1.
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.5/kdtrees/_kdtree.py) now supports finding neighbors within a specified distance through `proximal_neighbor`.
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : [`KDTree`](https://github.com/paradoxysm/kdtrees/blob/0.1.5/kdtrees/_kdtree.py) now supports custom types through the use of an `accept` clause. See [`kdtrees.kdtree_type`](https://github.com/paradoxysm/kdtrees/blob/0.1.5/kdtrees/kdtree_type.py) for implementation of required abstract base superclass.
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : Updates made to the [README](https://github.com/paradoxysm/kdtrees/blob/0.1.5/README.md) and [CHANGES](https://github.com/paradoxysm/kdtrees/blob/0.1.5/CHANGES.md).
-- ![Documentation](https://img.shields.io/badge/-Documentation-blue) : [Documentation](https://github.com/paradoxysm/kdtrees/blob/0.1.5/doc) initialized and [pydoc](https://github.com/paradoxysm/kdtrees/tree/blob/0.1.5/doc/pydoc) created.
+- ![Documentation](https://img.shields.io/badge/-Documentation-blue) : [Documentation](https://github.com/paradoxysm/kdtrees/tree/0.1.5/doc) initialized and [pydoc](https://github.com/paradoxysm/kdtrees/tree/0.1.5/doc/pydoc) created.
