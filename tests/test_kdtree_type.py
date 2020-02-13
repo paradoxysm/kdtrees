@@ -16,7 +16,7 @@ def kd_subtype():
 
 def test_bad_subtype(kd_subtype):
 	with pytest.raises(ValueError):
-		assert kd_subtype('a', 1)
+		kd_subtype('a', 1)
 
 def test_equals(kd_subtype):
 	kdtype1 = kd_subtype(1, 1)
@@ -31,12 +31,12 @@ def test_not_equals(kd_subtype):
 
 def test_abstract_len(kd_subtype):
 	with pytest.raises(NotImplementedError):
-		assert len(kd_subtype(1, 1))
+		len(kd_subtype(1, 1))
 
 def test_abstract_get(kd_subtype):
 	with pytest.raises(NotImplementedError):
-		assert kd_subtype(1, 1)[0]
+		kd_subtype(1, 1)[0]
 
 def test_abstract_dist(kd_subtype):
 	with pytest.raises(NotImplementedError):
-		assert kd_subtype(1, 1).distance(3)
+		kd_subtype(1, 1).distance(3)

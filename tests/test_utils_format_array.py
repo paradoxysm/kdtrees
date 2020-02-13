@@ -60,17 +60,3 @@ def test_format_array_wrong_type(bad_type):
 def test_format_array_override_type(kd_subtype):
 	assert utils.format_array(kd_subtype(1,1), accept=kd_subtype) == np.asarray([kd_subtype(1,1)])
 	assert utils.format_array([kd_subtype(1,1)], accept=kd_subtype) == np.asarray([kd_subtype(1,1)])
-
-def test_distance():
-	assert utils.distance(1,0) == 1
-
-def test_distance_mismatch(kd_subtype):
-	with pytest.raises(ValueError):
-		utils.distance(kd_subtype(1,1), 1)
-
-def test_distance_accept(kd_subtype):
-	assert utils.distance(kd_subtype(1,1), kd_subtype(1,1), accept=kd_subtype) == 1
-
-def test_distance_accept_mismatch(kd_subtype):
-	with pytest.raises(ValueError):
-		utils.distance(kd_subtype(1,1), 0, accept=kd_subtype)
