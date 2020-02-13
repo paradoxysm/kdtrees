@@ -9,11 +9,6 @@
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : An update to the documentation.
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Miscellaneous updates such as package structure or GitHub quality of life updates.
 
-### Version 0.1.7-prerelease
-
-This is a prerelease record of changes that will be implemented in `kdtrees 0.1.7`.
-- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_kdtrees.nearest_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) and [`_kdtrees.proximal_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) now properly call [`_utils.distance`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) with `accept` override applied as per [ISS #7](https://github.com/paradoxysm/kdtrees/issues/7).
-
 ### Version 0.1.6
 
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__iter__` no longer required for [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) as per [ISS #2](https://github.com/paradoxysm/kdtrees/issues/2).
