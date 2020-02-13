@@ -28,6 +28,9 @@ class KDTree:
 	axis : int, default=0
 		Axis of discriminiation.
 
+	accept : KDTreeType or None
+		Override and allow custom types to be accepted.
+
 	Attributes
 	----------
 	left : KDTree
