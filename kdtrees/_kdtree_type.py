@@ -14,6 +14,11 @@ class KDTreeType(ABC, list):
 	`KDTreeType` to be acceptable. Based on the purpose of a K-D Tree,
 	`KDTreeTypes` must be comparable, indexable, and implement dimensionality
 	as well as distance.
+
+	Parameters
+	----------
+	dim : int
+		Dimensionality of this `KDTreeType`.
 	"""
 	def __init__(self, dim):
 		if not isinstance(dim, int):
