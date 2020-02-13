@@ -1,14 +1,20 @@
-# kdtree_type
+# kdtrees._kdtree_type
 Abstract base super class for acceptable type overrides
 ## KDTreeType
 ```python
-KDTreeType(self)
+KDTreeType(self, dim)
 ```
 
 An abstract base super class (interface) for creating custom
 types that kdtrees can accept. Any custom type must extend
 KDTreeType to be acceptable. Based on the purpose of a K-D Tree,
 KDTreeTypes must be comparable, indexable, and iterable.
+
+**Parameters**
+```
+dim : int
+	Dimensionality of this `KDTreeType`.
+```
 
 ## __eq__
 ```python
@@ -76,4 +82,22 @@ This needs to be defined based on the custom implementation.
 ```
 item : object
 	The 'item' and the 'index', `key`, of the KDTreeType.
+```
+
+## distance
+```python
+KDTreeType.distance(KDTreeType)
+```
+Calculate the 'distance' between this `KDTreeType` and `other`.
+
+**Parameters**
+```
+other : object
+	The object in question.
+```
+
+**Returns**
+```
+dist : float
+	'Distance' between this `KDTreeType` and `other`.
 ```

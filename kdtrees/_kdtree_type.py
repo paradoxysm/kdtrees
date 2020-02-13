@@ -99,6 +99,6 @@ class KDTreeType(ABC, list):
 		Returns
 		-------
 		dist : float
-			'Distance' between this `KDTreeType` and `other`
+			'Distance' between this `KDTreeType` and `other`.
 		"""
 		raise NotImplementedError("distance not implemented")
