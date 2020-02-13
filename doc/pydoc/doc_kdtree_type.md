@@ -56,6 +56,25 @@ ne : bool
 	True if `other` is not equivalent to this `KDTreeType`
 ```
 
+## __lt__
+```python
+KDTreeType < KDTreeType
+KDTreeType.__lt__(other)
+```
+Return if this `KDTreeType` is 'less' than `other`.
+
+**Parameters**
+```
+other : object
+	The object in question.
+```
+
+**Returns**
+```
+lt : bool
+	True if this `KDTreeType` is 'less' than `other`.
+```
+
 ## __getitem__
 ```python
 KDTreeType[i]

@@ -7,7 +7,7 @@
 
 from abc import ABC, abstractmethod
 
-class KDTreeType(ABC, list):
+class KDTreeType(ABC):
 	"""
 	An abstract base super class (interface) for creating custom
 	types that kdtrees can accept. Any custom type must extend
@@ -59,6 +59,23 @@ class KDTreeType(ABC, list):
 			True if `other` is not equivalent to this `KDTreeType`
 		"""
 		return not self.__eq__(other)
+
+	@abstractmethod
+	def __lt__(self, other):
+		"""
+		Return if this `KDTreeType` is 'less' than `other`.
+
+		Parameters
+		----------
+		other : object
+			The object in question.
+
+		Returns
+		-------
+		lt : bool
+			True if this `KDTreeType` is 'less' than `other`.
+		"""
+		raise NotImplementedError("__lt__ not implemented")
 
 	@abstractmethod
 	def __getitem__(self, key):

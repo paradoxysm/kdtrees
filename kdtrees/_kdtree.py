@@ -41,6 +41,9 @@ class KDTree:
 
 	nodes : int
 		Number of nodes in the KDTree, including itself.
+
+	accept : KDTreeType or None
+		Override and allow a custom type to be accepted.
 	"""
 	def __init__(self, value, k=1, axis=0, accept=None):
 		self.value = value
@@ -81,7 +84,8 @@ class KDTree:
 		Parameters
 		----------
 		points : array-like, shape (n_points, *)
-			List of points to build a KDTree where the last axis denotes the features
+			List of points to build a KDTree where the last axis denotes the features.
+			If `accept` is a KDTreeType, list can contain this type.
 
 		k : int or None, default=None
 			Dimensionality of the points. If None, `initialize` will self-detect.
@@ -90,18 +94,17 @@ class KDTree:
 			Initial axis to generate the KDTree.
 
 		accept : KDTreeType or None
-			Override and allow custom types to be accepted.
+			Override and allow a custom type to be accepted.
 
 		Returns
 		-------
 		tree : KDTree
-			The root of the KDTree built from `points`
+			The root of the KDTree built from `points`.
 		"""
-		if accept is not None and not isinstance(accept, KDTreeType):
+		if accept is not None and not issubclass(accept, KDTreeType):
 			raise ValueError("Accept must be a subclass of KDTreeType")
-		points = utils.format_array(points, l=True, accept=accept)
 		if k is None:
-			k = utils.check_dimensionality(points, l=True, accept=accept)
+			k = utils.check_dimensionality(*points, accept=accept)
 		sorted_points = []
 		for axis in range(k):
 			sorted_points.append(sorted(points, key=lambda x: x[axis]))
@@ -120,8 +123,8 @@ class KDTree:
 		Parameters
 		----------
 		sorted_points : list
-			List of lists of points, each sorted on
-			each of the axes of discrimination.
+			List of ndarrays of points (KDTreeType if `accept` is used),
+			each sorted on each of the axes of discrimination.
 
 		k : int
 			Dimensionality of the points.
@@ -130,7 +133,7 @@ class KDTree:
 			Axis of discrimination.
 
 		accept : KDTreeType or None
-			Override and allow custom types to be accepted.
+			Override and allow a custom type to be accepted.
 
 		Returns
 		-------
@@ -144,11 +147,15 @@ class KDTree:
 		right_points = sorted_points[axis][median+1:]
 		left_points = sorted_points[axis][:median]
 		for points in sorted_points:
-			right_dim_masks = [np.isin(points[:,x], right_points[:,x]) for x in range(k)]
-			right_mask = np.all(np.stack(right_dim_masks, axis=-1), axis=-1)
+			if accept:
+				right_mask = np.isin(points, right_points)
+				left_mask = np.isin(points, left_points)
+			else:
+				right_dim_masks = [np.isin(points[:,x], right_points[:,x]) for x in range(k)]
+				right_mask = np.all(np.stack(right_dim_masks, axis=-1), axis=-1)
+				left_dim_masks = [np.isin(points[:,x], left_points[:,x]) for x in range(k)]
+				left_mask = np.all(np.stack(left_dim_masks, axis=-1), axis=-1)
 			sorted_right_points.append(points[right_mask])
-			left_dim_masks = [np.isin(points[:,x], left_points[:,x]) for x in range(k)]
-			left_mask = np.all(np.stack(left_dim_masks, axis=-1), axis=-1)
 			sorted_left_points.append(points[left_mask])
 		sorted_right_points = np.asarray(sorted_right_points)
 		sorted_left_points = np.asarray(sorted_left_points)
@@ -179,15 +186,17 @@ class KDTree:
 
 		Parameters
 		----------
-		point : array-like or scalar
-			The point to be inserted, where the last axis denotes the features.
+		point : array-like or object
+			The point (KDTreeType if `accept` is used) to be inserted,
+			where the last axis denotes the features.
 
 		Returns
 		-------
 		tree : KDTree
 			The root of the KDTree with `point` inserted.
 		"""
-		point = utils.format_array(point, accept=self.accept)
+		if self.accept is None:
+			point = np.asarray(point)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		axis = self.axis + 1 if self.axis + 1 < self.k else 0
@@ -214,7 +223,8 @@ class KDTree:
 		Parameters
 		----------
 		point : array-like or scalar
-			The point being searched, where the last axis denotes the features.
+			The point (KDTreeType if `accept` is used) being searched,
+			where the last axis denotes the features.
 
 		Returns
 		-------
@@ -222,7 +232,8 @@ class KDTree:
 			The KDTree node whose value matches the point.
 			None if the point was not found in the tree.
 		"""
-		point = utils.format_array(point, accept=self.accept)
+		if self.accept is None:
+			point = np.asarray(point)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		elif np.all(self.value == point):
@@ -253,7 +264,8 @@ class KDTree:
 		tree : KDTree
 			The root of the KDTree with `point` removed.
 		"""
-		point = utils.format_array(point, accept=self.accept)
+		if self.accept is None:
+			point = np.asarray(point)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		if np.all(self.value == point):
@@ -350,7 +362,8 @@ class KDTree:
 		neighbors : list, shape (n_neighbors, 2)
 			The list of `n` tuples, referring to `n` nearest neighbors.
 		"""
-		point = utils.format_array(point, accept=self.accept)
+		if self.accept is None:
+			point = np.asarray(point)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		if len(neighbors) != n:
@@ -391,7 +404,8 @@ class KDTree:
 			The list of `n` tuples, referring to proximal neighbors within
 			`d` distance from `point`.
 		"""
-		point = utils.format_array(point, accept=self.accept)
+		if self.accept is None:
+			point = np.asarray(point)
 		if self.k != utils.check_dimensionality(point, accept=self.accept):
 			raise ValueError("Point must be same dimensionality as the KDTree")
 		if d == 0:
