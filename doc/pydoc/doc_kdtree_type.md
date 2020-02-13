@@ -56,20 +56,6 @@ ne : bool
 	True if `other` is not equivalent to this `KDTreeType`
 ```
 
-## __len__
-```python
-len(KDTreeType)
-KDTreeType.__len__()
-```
-Return the 'length' of the KDTreeType. This needs to be
-defined based on the custom implementation.
-
-**Returns**
-```
-length : int
-	The 'length' of this `KDTreeType`.
-```
-
 ## __getitem__
 ```python
 KDTreeType[i]

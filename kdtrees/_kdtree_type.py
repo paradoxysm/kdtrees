@@ -61,19 +61,6 @@ class KDTreeType(ABC, list):
 		return not self.__eq__(other)
 
 	@abstractmethod
-	def __len__(self):
-		"""
-		Return the 'length' of the KDTreeType. This needs to be
-		defined based on the custom implementation.
-
-		Returns
-		-------
-		length : int
-			The 'length' of this `KDTreeType`.
-		"""
-		raise NotImplementedError("__len__ not implemented")
-
-	@abstractmethod
 	def __getitem__(self, key):
 		"""
 		Return the 'item' and the 'index', `key`, of the `KDTreeType`.
