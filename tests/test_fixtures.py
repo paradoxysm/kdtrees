@@ -1,4 +1,5 @@
 import pytest
+import numpy as np
 
 from kdtrees import KDTreeType
 
@@ -7,7 +8,7 @@ class KDSubType(KDTreeType):
 		super().__init__(dim)
 		self.a = a
 	def distance(self, other):
-		return 1
+		return np.abs(self.a - other.a)
 	def __lt__(self, other):
 		if isinstance(other, KDSubType):
 			return self.a < other.a

@@ -372,7 +372,7 @@ class KDTree:
 		dist = utils.distance(point, self.value, accept=self.accept)
 		idx = neighbors[:,1].searchsorted(dist)
 		if idx < len(neighbors):
-			neighbors = np.insert(neighbors, idx, np.asarray([self.value, dist]), axis=0)[:n]
+			neighbors = np.insert(neighbors, idx, np.asarray((self.value, dist)), axis=0)[:n]
 		if point[self.axis] + neighbors[-1,1] >= self.value[self.axis] and self.right:
 			neighbors = self.right.nearest_neighbor(point, n=n, neighbors=neighbors)
 		if point[self.axis] - neighbors[-1,1] < self.value[self.axis] and self.left:

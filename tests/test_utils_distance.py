@@ -15,7 +15,7 @@ def test_distance_mismatch():
 		utils.distance(KDSubType(1,1), 1, accept=KDSubType)
 
 def test_distance_accept():
-	assert utils.distance(KDSubType(1,1), KDSubType(1,1), accept=KDSubType) == 1
+	assert utils.distance(KDSubType(1,1), KDSubType(1,1), accept=KDSubType) == 0
 
 def test_distance_accept_mismatch():
 	with pytest.raises(ValueError):

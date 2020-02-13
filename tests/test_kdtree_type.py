@@ -29,5 +29,9 @@ def test_abstract():
 def test_get():
 	assert KDSubType(1, 1)[0] == 1
 
-def test_abstract_dist():
-	assert KDSubType(1, 1).distance(3) == 1
+def test_dist():
+	assert KDSubType(1, 1).distance(KDSubType(1, 2)) == 1
+
+def test_dist_mismatch():
+	with pytest.raises(AttributeError):
+		KDSubType(1, 1).distance(3)
