@@ -14,6 +14,7 @@
 
 - ![Feature](https://img.shields.io/badge/-Feature-blueviolet) : [`_utils.format_array`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) is now removed and all code is changed to reflect. **This is a major feature. `kdtrees 0.1.7` is not backwards-compatible.**
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__len__` no longer a required function in [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtree_type.py) as per [ISS #9](https://github.com/paradoxysm/kdtrees/issues/9).
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_kdtrees.initialize`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) now correctly handles `accept` overrides to update presorted arrays.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`_utils.check_dimensionality`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) now properly checks `accept` overridden types without unexepected errors.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtree_type.py) now implements `__lt__` for proper sorting.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtree_type.py) no longer extends `list` so that it can be properly wrapped into a list.
