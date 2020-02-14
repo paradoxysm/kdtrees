@@ -16,7 +16,7 @@ A K-Dimensional Tree, or K-D Tree, is a space-partitioning data structure which 
 
 kdtrees implementation of a K-D Tree allows for construction, modification, searching, and other helpful functions such as k-nearest neighbors. It also maintains the tree in a pseudo-balanced manner through a secondary invariant where every node is the median ± dimensionality of subsidiary nodes along a specific axis.
 
-More details regarding this implementation can be found in the documentation [here](https://github.com/paradoxysm/kdtrees/tree/0.1.7/doc).
+More details regarding this implementation can be found in the documentation [here](https://github.com/paradoxysm/kdtrees/tree/master/doc).
 
 ## Installation
 
@@ -37,7 +37,7 @@ pip install kdtrees
 
 ## Changelog
 
-See the [changelog](https://github.com/paradoxysm/kdtrees/blob/0.1.7/CHANGES.md) for a history of notable changes to kdtrees.
+See the [changelog](https://github.com/paradoxysm/kdtrees/blob/master/CHANGES.md) for a history of notable changes to kdtrees.
 
 ## Development
 
@@ -51,7 +51,7 @@ There are three main branches for development and release. `master` is the curre
 
 ### Documentation
 
-Documentation for kdtrees can be found [here](https://github.com/paradoxysm/kdtrees/tree/0.1.7/doc).
+Documentation for kdtrees can be found [here](https://github.com/paradoxysm/kdtrees/tree/master/doc).
 
 ### Issues and Questions
 
