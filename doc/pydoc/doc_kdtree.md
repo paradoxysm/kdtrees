@@ -34,6 +34,9 @@ right : KDTree
 
 nodes : int
  Number of nodes in the KDTree, including itself.
+
+accept : KDTreeType or None
+  Override and allow a custom type to be accepted.
 ```
 
 ## initialize
@@ -49,22 +52,23 @@ as the root.
 **Parameters**
 ```
 points : array-like, shape (n_points, *)
- List of points to build a KDTree where the last axis denotes the features
+  List of points to build a KDTree where the last axis denotes the features.
+  If `accept` is a KDTreeType, list can contain this type.
 
 k : int or None, default=None
- Dimensionality of the points. If None, `initialize` will self-detect.
+  Dimensionality of the points. If None, `initialize` will self-detect.
 
 init_axis : int, default=0
- Initial axis to generate the KDTree.
+  Initial axis to generate the KDTree.
 
 accept : KDTreeType or None
- Override and allow custom types to be accepted.
+  Override and allow a custom type to be accepted.
 ```
 
 **Returns**
 ```
 tree : KDTree
- The root of the KDTree built from `points`
+ The root of the KDTree built from `points`.
 ```
 
 ## visualize
@@ -90,7 +94,8 @@ Insert a point into the KDTree.
 **Parameters**
 ```
 point : array-like or scalar
- The point to be inserted, where the last axis denotes the features.
+  The point (KDTreeType if `accept` is used) to be inserted,
+  where the last axis denotes the features.
 ```
 
 **Returns**
@@ -110,7 +115,8 @@ Returns the KDTree node if found, None otherwise.
 **Parameters**
 ```
 point : array-like or scalar
- The point being searched, where the last axis denotes the features.
+ The point (KDTreeType if `accept` is used) being searched,
+ where the last axis denotes the features.
 ```
 
 **Returns**
@@ -131,7 +137,8 @@ KDTree. Returns the same tree if the point was not found.
 **Parameters**
 ```
 point : array-like or scalar
- The point to be deleted, where the last axis denotes the features.
+ The point (KDTreeType if `accept` is used) to be deleted,
+ where the last axis denotes the features.
 ```
 
 **Returns**
@@ -190,7 +197,8 @@ Determine the `n` nearest KDTree nodes to `point` and their distances.
 **Parameters**
 ```
 point : array-like or scalar
- The query point, where the last axis denotes the features.
+ The query point (KDTreeType if `accept` is used),
+ where the last axis denotes the features.
 
 n : int, default=1
  The number of neighbors to search for.
@@ -218,7 +226,8 @@ to `point` and their distances.
 **Parameters**
 ```
 point : array-like or scalar
- The query point, where the last axis denotes the features.
+ The query point (KDTreeType if `accept` is used),
+ where the last axis denotes the features.
 
 d : int, default=0
  The maximum acceptable distance for neighbors.

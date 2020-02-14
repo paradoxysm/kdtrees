@@ -1,16 +1,8 @@
----
-name: Pull request
-about: Propose a pull request
-title: ''
-labels: ''
-assignees: ''
-
----
-
 Please assign an appropriate label to the PR:
-- bug : This PR fixes a bug
-- documentation : This PR improves on the documentation
-- enhancement : This PR implements a new feature or enhancement
+- bug : This PR fixes a bug.
+- documentation : This PR improves on the documentation.
+- enhancement : This PR implements a new feature or enhancement.
+- release : This PR is a release PR to the `release` branch.
 
 **Reference Issues/PRs where applicable**
 

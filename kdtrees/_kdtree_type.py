@@ -7,7 +7,7 @@
 
 from abc import ABC, abstractmethod
 
-class KDTreeType(ABC, list):
+class KDTreeType(ABC):
 	"""
 	An abstract base super class (interface) for creating custom
 	types that kdtrees can accept. Any custom type must extend
@@ -61,17 +61,21 @@ class KDTreeType(ABC, list):
 		return not self.__eq__(other)
 
 	@abstractmethod
-	def __len__(self):
+	def __lt__(self, other):
 		"""
-		Return the 'length' of the KDTreeType. This needs to be
-		defined based on the custom implementation.
+		Return if this `KDTreeType` is 'less' than `other`.
+
+		Parameters
+		----------
+		other : object
+			The object in question.
 
 		Returns
 		-------
-		length : int
-			The 'length' of this `KDTreeType`.
+		lt : bool
+			True if this `KDTreeType` is 'less' than `other`.
 		"""
-		raise NotImplementedError("__len__ not implemented")
+		raise NotImplementedError("__lt__ not implemented")
 
 	@abstractmethod
 	def __getitem__(self, key):

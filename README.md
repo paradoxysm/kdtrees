@@ -45,6 +45,8 @@ kdtrees is fully implemented for basic functionality. However, it may not have e
 
 Currently, particular contributions regarding pytests and documentation would be greatly appreciated. Guides and examples of usage are warmly welcomed.
 
+There are three main branches for development and release. `master` is the current development build; `release` is the staging branch for releases; `production` is the current public release build.
+
 ## Help and Support
 
 ### Documentation

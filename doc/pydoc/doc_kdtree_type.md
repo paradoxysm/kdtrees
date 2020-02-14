@@ -56,18 +56,23 @@ ne : bool
 	True if `other` is not equivalent to this `KDTreeType`
 ```
 
-## __len__
+## __lt__
 ```python
-len(KDTreeType)
-KDTreeType.__len__()
+KDTreeType < KDTreeType
+KDTreeType.__lt__(other)
 ```
-Return the 'length' of the KDTreeType. This needs to be
-defined based on the custom implementation.
+Return if this `KDTreeType` is 'less' than `other`.
+
+**Parameters**
+```
+other : object
+	The object in question.
+```
 
 **Returns**
 ```
-length : int
-	The 'length' of this `KDTreeType`.
+lt : bool
+	True if this `KDTreeType` is 'less' than `other`.
 ```
 
 ## __getitem__

@@ -1,35 +1,9 @@
 # kdtrees._utils
 Utilities for Various Tasks
-## format_array
-```python
-format_array(arr, l=False, accept=None)
-```
-
-Format the given array or scalar into a numpy ndarray
-such that the last axis denotes the features.
-If the argument given is a scalar, wrap into a list first.
-
-**Parameters**
-```
-arr : array-like or scalar
- Array-like object or scalar to convert into ndarray.
-
-l : bool
- `l` should be set to True if `arr` is semantically a list of items.
-
-accept : None or object, default=None
-  Accept override type. Allow `arr` to be this type
-```
-
-**Returns**
-```
-ndarr : ndarray
- Formatted ndarray where the last axis denotes the features.
-```
 
 ## check_dimensionality
 ```python
-check_dimensionality(*args, l=False, accept=None)
+check_dimensionality(*args, accept=None)
 ```
 
 Check that all arguments have the same dimensionality.
@@ -41,14 +15,11 @@ attribute, use that instead.
 **Parameters**
 ```
 *args : tuple, default=()
- Tuple of array-like objects where the last axis denotes the features.
-
-l : bool
- `l` should be set to True if `args` is a tuple where every
- item is semantically a list of items.
+	Tuple of ndarray objects where the last axis denotes the features.
+	If `accept` is an object, it can be this type.
 
 accept : None or object, default=None
-  Accept override type. Check the `dim` attribute of this object
+	Accept override type. Check the `dim` attribute of this object.
 ```
 
 **Returns**
@@ -69,19 +40,20 @@ function, use that instead. Uses `obj1.distance(obj2)`.
 
 **Parameters**
 ```
-obj1 : array-like or object, default=()
-	Tuple of array-like objects where the last axis denotes the features.
+obj1 : array-like or scalar or object
+	array-like or scalar where the last axis denotes the features.
+	If `accept` is an object, it can be this type.
 
-l : bool
-	`l` should be set to True if `args` is a tuple where every
-	item is semantically a list of items.
+obj2 : array-like or scalar or object
+	array-like or scalar where the last axis denotes the features.
+	If `accept` is an object, it can be this type.
 
 accept : None or object, default=None
-	Accept override type. Check the dimensionality attribute of this object
+	Accept override type. Use the `distance` function of this type.
 ```
 
 **Returns**
 ```
-dim : int
-	The dimensionality of all given arguments.
+distance : int
+	The distance between `obj1` and `obj2`.
 ```
