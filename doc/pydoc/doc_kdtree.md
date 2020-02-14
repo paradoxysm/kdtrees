@@ -12,7 +12,7 @@ median ± dimensionality of all nodes contained in the KDTree.
 
 **Parameters**
 ```
-value : array-like
+value : array-like or object
  Value at the KDTree node.
 
 k : int, default=0
@@ -203,7 +203,7 @@ point : array-like or scalar
 n : int, default=1
  The number of neighbors to search for.
 
-neighbors : list, default=[]
+neighbors : array-like, default=[]
  The list of `n` tuples, referring to `n` nearest neighbors,
  sorted based on proximity. The first value in the tuple is the
  point, while the second is the distance to `point`.
@@ -211,7 +211,7 @@ neighbors : list, default=[]
 
 **Returns**
 ```
-neighbors : list, shape (n_neighbors, 2)
+neighbors : ndarray, shape (n_neighbors, 2)
  The list of `n` tuples, referring to `n` nearest neighbors.
 ```
 
@@ -232,7 +232,7 @@ point : array-like or scalar
 d : int, default=0
  The maximum acceptable distance for neighbors.
 
-neighbors : list, default=[]
+neighbors : array-like, default=[]
  The list of `n` tuples, referring to proximal neighbors within
  `d` distance from `point`, sorted based on proximity.
  The first value in the tuple is the point, while the
@@ -241,7 +241,7 @@ neighbors : list, default=[]
 
 **Returns**
 ```
-neighbors : list, shape (n_neighbors, 2)
+neighbors : ndarray, shape (n_neighbors, 2)
  The list of `n` tuples, referring to proximal neighbors within
  `d` distance from `point`.
 ```
