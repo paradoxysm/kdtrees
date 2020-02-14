@@ -10,11 +10,13 @@
 - ![Other](https://img.shields.io/badge/-Other-lightgrey) : Miscellaneous updates such as package structure or GitHub quality of life updates.
 
 
-### Version 0.1.7-prerelease
+### Version 0.1.7
 
-This is a prerelease record of changes that will be implemented in `kdtrees 0.1.7`.
 - ![Feature](https://img.shields.io/badge/-Feature-blueviolet) : [`_utils.format_array`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) is now removed and all code is changed to reflect. **This is a major feature. `kdtrees 0.1.7` is not backwards-compatible.**
 - ![Enhancement](https://img.shields.io/badge/-Enhancement-purple) : `__len__` no longer a required function in [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) as per [ISS #9](https://github.com/paradoxysm/kdtrees/issues/9).
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`_utils.check_dimensionality`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) now properly checks `accept` overridden types without unexepected errors.
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) now implements `__lt__` for proper sorting.
+- ![Fix](https://img.shields.io/badge/-Fix-red) : [`KDTreeType`](https://github.com/paradoxysm/kdtrees/blob/0.1.6/kdtrees/_kdtree_type.py) no longer extends `list` so that it can be properly wrapped into a list.
 - ![Fix](https://img.shields.io/badge/-Fix-red) : [`_kdtrees.nearest_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) and [`_kdtrees.proximal_neighbor`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_kdtrees.py) now properly call [`_utils.distance`](https://github.com/paradoxysm/kdtrees/blob/0.1.7/kdtrees/_utils.py) with `accept` override applied as per [ISS #7](https://github.com/paradoxysm/kdtrees/issues/7).
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : Updated documentation to reflect changes.
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue) : Implemented a number of new tests in [`tests`](https://github.com/paradoxysm/kdtrees/tree/0.1.7/tests/)
