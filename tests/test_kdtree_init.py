@@ -2,6 +2,7 @@ import pytest
 import numpy as np
 
 from kdtrees import KDTree
+from .test_fixtures import KDSubType
 
 def test_init():
 	tree = KDTree(0)
@@ -53,6 +54,18 @@ def test_initialize_2D(points_2d, init_2d_exp, capsys):
 def test_initialize_3D(points_3d, init_3d_exp):
 	tree = KDTree.initialize(points_3d)
 	assert np.all(tree.value == init_3d_exp)
+
+@pytest.mark.parametrize("points_type, init_type_exp", [
+	([KDSubType(2,[-1,1]),KDSubType(2,[0,0]), KDSubType(2,[1,1]), KDSubType(2,[1,0])],
+		KDSubType(2,[1,1])),
+])
+
+def test_initialize_accept(points_type, init_type_exp):
+	tree = KDTree.initialize(points_type, accept=KDSubType)
+	assert np.all(tree.value == init_type_exp)
+	assert np.all(tree.right.value == KDSubType(2, [1,0]))
+	assert np.all(tree.left.value == KDSubType(2, [-1,1]))
+	assert np.all(tree.left.left.value == KDSubType(2, [0,0]))
 
 @pytest.mark.parametrize("points_vis,vis_exp", [
 	([[0,0,0],[1,1,1],[0,2,0]], "[0 2 0], axis: 0, nodes: 3\n" + \

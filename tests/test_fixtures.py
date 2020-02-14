@@ -15,7 +15,10 @@ class KDSubType(KDTreeType):
 		else:
 			return self.a < other
 	def __getitem__(self, i):
-		return self.a
+		if np.isscalar(self.a):
+			return self.a
+		else:
+			return self.a[i]
 
 class KDBadType(KDTreeType):
 	def __init__(self, dim, a):
